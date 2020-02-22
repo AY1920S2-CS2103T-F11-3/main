@@ -18,11 +18,11 @@ By: `F11-03`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 Our application is being managed by a dependency management tool Gradle.
-The project is available at https://github.com/AY1920S2-CS2103T-F11-3/main. After cloning the repository, you can follow these steps: 
+The project is available at https://github.com/AY1920S2-CS2103T-F11-3/main. After cloning the repository, you can follow these steps:
 We assume that you are using IntelliJ.
 
-1. Run gradle build. 
-2. Run gradle run. 
+1. Run gradle build.
+2. Run gradle run.
 
 
 
@@ -73,15 +73,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |student on budget | search through prices of food items in different canteens| discover which are the cheapest food items
 
-|`* *` |user who do not carry a lot of cash | see the type of payment methods available | 
+|`* *` |user who do not carry a lot of cash | see the type of payment methods available |
 
-|`* *` |user | track the frequency of the food I eat | eat certain food in moderation and save money if i have been eating expensive food frequently 
+|`* *` |user | track the frequency of the food I eat | eat certain food in moderation and save money if i have been eating expensive food frequently
 
 |`* *` |user | see some images of the food |
 
 |`*` |user who is health conscious |view the dietary options available for each canteen |
 
-|`v2.0` |user |place an order | 
+|`v2.0` |user |place an order |
 
 |`v2.0` |store owner |add new food items on the menu |
 

@@ -7,7 +7,11 @@ import seedu.foodiebot.model.Model;
 import seedu.foodiebot.model.canteen.NameContainsKeywordsPredicate;
 
 /**
+<<<<<<< HEAD
  * Finds and lists all canteens in FoodieBot whose block name contains any of the argument keywords.
+=======
+ * Finds and lists all persons in address book whose name contains any of the argument keywords.
+>>>>>>> master
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -22,6 +26,7 @@ public class FindCommand extends Command {
                     + "Example: "
                     + COMMAND_WORD
                     + " com1 ";
+
 
     private final NameContainsKeywordsPredicate predicate;
 

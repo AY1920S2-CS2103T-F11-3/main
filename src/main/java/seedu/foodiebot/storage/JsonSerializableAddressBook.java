@@ -53,6 +53,7 @@ class JsonSerializableAddressBook {
             if (foodieBot.hasCanteen(canteen)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CANTEEN);
             }
+
             foodieBot.addCanteen(canteen);
         }
         return foodieBot;

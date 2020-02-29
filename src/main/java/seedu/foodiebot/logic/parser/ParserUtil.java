@@ -75,6 +75,7 @@ public class ParserUtil {
     }
 
     /**
+<<<<<<< HEAD:src/main/java/seedu/foodiebot/logic/parser/ParserUtil.java
      * Parses a {@code String blockName} into an {@code blockName}. Leading and trailing whitespaces
      * will be trimmed.
      *

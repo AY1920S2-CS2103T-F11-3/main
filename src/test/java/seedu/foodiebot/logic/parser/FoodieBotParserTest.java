@@ -41,6 +41,7 @@ public class FoodieBotParserTest {
     }
 
     /*@Test
+    @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command =
             (DeleteCommand)
@@ -52,6 +53,7 @@ public class FoodieBotParserTest {
     }
 
     @Test
+    /* @Test
     public void parseCommand_edit() throws Exception {
         Canteen canteen = new CanteenBuilder().build();
         EditCanteenDescriptor descriptor = new EditCanteenDescriptorBuilder(canteen).build();

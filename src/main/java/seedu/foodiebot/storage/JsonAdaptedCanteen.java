@@ -14,8 +14,6 @@ import seedu.foodiebot.model.canteen.Canteen;
 import seedu.foodiebot.model.canteen.Name;
 import seedu.foodiebot.model.tag.Tag;
 
-
-
 /** Jackson-friendly version of {@link Canteen}. */
 class JsonAdaptedCanteen {
 
@@ -25,6 +23,7 @@ class JsonAdaptedCanteen {
     private final int numberOfStalls;
     private final String nearestBlockName;
     private final int distance;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /** Constructs a {@code JsonAdaptedCanteen} with the given person details. */
@@ -39,6 +38,7 @@ class JsonAdaptedCanteen {
         this.numberOfStalls = Integer.parseInt(numberOfStalls);
         this.nearestBlockName = nearestBlockName;
         this.distance = Integer.parseInt(distance);
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }

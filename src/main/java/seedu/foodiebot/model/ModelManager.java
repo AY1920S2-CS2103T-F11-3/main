@@ -31,7 +31,8 @@ public class ModelManager implements Model {
 
         this.foodieBot = new FoodieBot(foodieBot);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCanteens = new FilteredList<Canteen>(this.foodieBot.getCanteenList());
+
+        filteredCanteens = new FilteredList<>(this.foodieBot.getCanteenList());
     }
 
     public ModelManager() {

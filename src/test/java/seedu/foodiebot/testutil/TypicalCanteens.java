@@ -22,6 +22,7 @@ public class TypicalCanteens {
             .withDistance(3200).withNearestBlock("COM1")
             .withTags("muslim", "asian", "western").build();
 
+
     public static final String KEYWORD_MATCHING_DECK = "Deck"; // A keyword that matches DECK
 
     private TypicalCanteens() {

@@ -107,6 +107,7 @@ public class CommandTestUtil {
      * targetIndex} in the {@code model}'s address book.
      */
     /* public static void showCanteenAtIndex(Model model, Index targetIndex) {
+
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCanteenList().size());
 
         Canteen canteen = model.getFilteredCanteenList().get(targetIndex.getZeroBased());
@@ -116,5 +117,7 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredCanteenList().size());
     }
+
      */
+
 }

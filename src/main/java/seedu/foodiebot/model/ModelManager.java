@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
 import seedu.foodiebot.commons.core.GuiSettings;
 import seedu.foodiebot.commons.core.LogsCenter;
 import seedu.foodiebot.model.canteen.Canteen;
@@ -30,7 +31,7 @@ public class ModelManager implements Model {
 
         this.foodieBot = new FoodieBot(foodieBot);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCanteens = new FilteredList<>(this.foodieBot.getCanteenList());
+        filteredCanteens = new FilteredList<Canteen>(this.foodieBot.getCanteenList());
     }
 
     public ModelManager() {
@@ -100,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addCanteen(Canteen canteen) {
         foodieBot.addCanteen(canteen);
-        updateFilteredCanteenList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredCanteenList(PREDICATE_SHOW_ALL_CANTEENS);
     }
 
     @Override

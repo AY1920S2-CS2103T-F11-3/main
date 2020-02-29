@@ -9,7 +9,7 @@ import seedu.foodiebot.model.tag.Tag;
 import seedu.foodiebot.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Canteen objects.
  */
 public class CanteenBuilder {
 
@@ -33,7 +33,7 @@ public class CanteenBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the CanteenBuilder with the data of {@code personToCopy}.
      */
     public CanteenBuilder(Canteen personToCopy) {
         name = personToCopy.getName();
@@ -44,7 +44,7 @@ public class CanteenBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Canteen} that we are building.
      */
     public CanteenBuilder withName(String name) {
         this.name = new Name(name);
@@ -52,7 +52,25 @@ public class CanteenBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are
+     * Sets the {@code distance} of the {@code Canteen} that we are building.
+     */
+    public CanteenBuilder withDistance(int distance) {
+        this.distance = distance;
+        return this;
+    }
+
+    /**
+     * Sets the {@code blockName} of the {@code Canteen} that we are building.
+     */
+    public CanteenBuilder withNearestBlock(String blockName) {
+        this.blockName = blockName;
+        return this;
+    }
+
+
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Canteen} that we are
      * building.
      */
     public CanteenBuilder withTags(String... tags) {

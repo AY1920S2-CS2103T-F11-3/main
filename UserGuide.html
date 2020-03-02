@@ -222,11 +222,19 @@ E.g. after the user has selected a food item previously.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Examples:
-* <code>menu all</code><br>
-Display the menu for this store.
-* <code>menu by name</code><br>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>menu all</code><br>
+Display the menu for this store.</p>
+</li>
+<li>
+<p><code>menu by name</code><br>
 Display the sorted menu based on the names (a-z).</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -267,11 +275,11 @@ This budget can be changed, however, this will reset the budget overview for the
 </li>
 </ul>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 This has to be a <strong>positive numerical number</strong> (decimal places allowed).
@@ -280,11 +288,19 @@ This has to be a <strong>positive numerical number</strong> (decimal places allo
 </table>
 </div>
 <div class="paragraph">
-<p>Examples:
-* <code>budget set weekly 9.50</code><br>
-Sets your weekly budget to $9.50.
-* <code>budget set /m 100</code><br>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>budget set weekly 9.50</code><br>
+Sets your weekly budget to $9.50.</p>
+</li>
+<li>
+<p><code>budget set /m 100</code><br>
 Sets your monthly budget to $100.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -299,7 +315,7 @@ Sets your monthly budget to $100.</p>
 <div class="sect2">
 <h3 id="viewing-expense-report-code-report-code"><a class="link" href="#viewing-expense-report-code-report-code">3.10. Viewing Expense Report: <code>report</code></a></h3>
 <div class="paragraph">
-<p>You can view a report of your spendings and food purchases for any period.<br>
+<p>This command generate a report for the spendings and food purchases for any period specified.<br>
 Formats: <code>report</code><br>
          <code>report [/f START_DATE] [/t END_DATE]</code><br>
          <code>report [PERIOD]</code></p>
@@ -315,16 +331,24 @@ Formats: <code>report</code><br>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>IMPORTANT:
-* <code>START_DATE</code> cannot be a future date.
-* <code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>START_DATE</code> cannot be a future date.<br>
+<code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Both <code>[/f]</code> and <code>[t]</code> fields require the date format to be the following:<br>
-Examples</p>
+Examples:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -370,16 +394,24 @@ Generates a report for the year 2020.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>IMPORTANT:
-* <code>START_DATE</code> cannot be a future date.<br>
-* <code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>START_DATE</code> cannot be a future date.<br>
+<code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Both <code>[/f]</code> and <code>[t]</code> fields require the date format to be the following:<br>
-Examples</p>
+Examples:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -412,11 +444,11 @@ Generates a transaction for the year 2020.</p>
 <div class="paragraph">
 <p>Format: <code>review INDEX</code></p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 User can update existing reviews by using the same command.
@@ -433,11 +465,11 @@ User can update existing reviews by using the same command.
 <div class="paragraph">
 <p>Format: <code>rate INDEX</code></p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 User  can also update existing reviews by using the same command.
@@ -495,9 +527,8 @@ e.g. <code>menu chicken</code></p>
 <p><strong>randomize</strong> : <code>randomize</code></p>
 </li>
 <li>
-<p><strong>report</strong> : <code>report</code><br>
-e.g. <code>report [/f START_DATE] [/t END_DATE]</code><br>
- <code>report [PERIOD]</code></p>
+<p><strong>report</strong> : <code>report [/f START_DATE] [/t END_DATE] [PERIOD]</code><br>
+e.g. <code>report /f 12-02-2020 /t 30-04-2020</code></p>
 </li>
 <li>
 <p><strong>review</strong> : <code>review INDEX</code></p>
@@ -506,11 +537,10 @@ e.g. <code>report [/f START_DATE] [/t END_DATE]</code><br>
 <p><strong>select</strong> : <code>select INDEX</code></p>
 </li>
 <li>
-<p><strong>transaction</strong> : <code>transaction</code><br>
-e.g. <code>transaction [/f START_DATE] [/t END_DATE]</code><br>
-<code>transaction [PERIOD]</code></p>
+<p><strong>transaction</strong> : <code>transaction [/f START_DATE] [/t END_DATE] [PERIOD]</code><br>
+e.g. <code>transaction  /w 12-02-2020</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-02 06:51:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-02 07:04:55 UTC</div></div></div></body></html>

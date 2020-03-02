@@ -193,26 +193,40 @@ Includes the travel instructions and bus services that go to the canteen.</p>
 </td>
 <td class="content">
 This function is only available after the user has selected a canteen and store.
-* User ratings will be displayed if they are available<br>
-E.g. after the user has selected a food item previously.
-* <code>KEYWORD</code> includes:
-<strong> <code>[all]</code>: Returns a complete list of food sold at the store.
-</strong> <code>[by price/ name]</code>: Sorts the menu accordingly.
-** <code>[tags]</code>: Displays only the food with the corresponding tag.
 </td>
 </tr>
 </table>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>User ratings will be displayed if they are available<br>
+E.g. after the user has selected a food item previously.</p>
+</li>
+<li>
+<p><code>KEYWORD</code> includes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>[all]</code>: Returns a complete list of food sold at the store.</p>
+</li>
+<li>
+<p><code>[by price/ name]</code>: Sorts the menu accordingly.</p>
+</li>
+<li>
+<p><code>[tags]</code>: Displays only the food with the corresponding tag.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Examples:
- <code>menu all</code><br>
- Display the menu for this store.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>`menu by name` +
-Display the sorted menu based on the names (a-z).</pre>
-</div>
+* <code>menu all</code><br>
+Display the menu for this store.
+* <code>menu by name</code><br>
+Display the sorted menu based on the names (a-z).</p>
 </div>
 </div>
 <div class="sect2">
@@ -249,21 +263,28 @@ This budget can be changed, however, this will reset the budget overview for the
 <em>Possible inputs are <code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>/d</code>, <code>/w</code>, <code>/m</code>.</em></p>
 </li>
 <li>
-<p><code>AMOUNT</code>: defines the limit of your budget.
-[IMPORTANT] This has to be a <strong>positive numerical number</strong> (decimal places allowed).</p>
+<p><code>AMOUNT</code>: defines the limit of your budget.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This has to be a <strong>positive numerical number</strong> (decimal places allowed).
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Examples:
- <code>budget set weekly 9.50</code><br>
- Sets your weekly budget to $9.50.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>`budget set /m 100` +
-Sets your monthly budget to $100.</pre>
-</div>
+* <code>budget set weekly 9.50</code><br>
+Sets your weekly budget to $9.50.
+* <code>budget set /m 100</code><br>
+Sets your monthly budget to $100.</p>
 </div>
 </div>
 <div class="sect2">
@@ -294,35 +315,35 @@ Formats: <code>report</code><br>
 </li>
 </ul>
 </div>
-<div class="ulist IMPORTANT">
-<ul class="IMPORTANT">
+<div class="paragraph">
+<p>IMPORTANT:
+* <code>START_DATE</code> cannot be a future date.
+* <code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><code>START_DATE</code> cannot be a future date.</p>
-</li>
+<p>Both <code>[/f]</code> and <code>[t]</code> fields require the date format to be the following:<br>
+Examples</p>
+<div class="ulist">
+<ul>
 <li>
-<p><code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.</p>
-</li>
-<li>
-<p>Both <code>[/f]</code> and <code>[t]</code> fields require the date format to be the following:
-<code>report /f 12-02-2020 /t 30-04-2020</code><br>
+<p><code>report /f 12-02-2020 /t 30-04-2020</code><br>
 Generates a report from 12/2/2020 to 30/4/2020.</p>
-<div class="literalblock">
-<div class="content">
-<pre>`report /w 12-02-2020` +
-Generates a report for the week of 12/2/2020.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>`report month jan` / `report month january` +
-Generates a report for the month of January.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>`report /y 2020` +
-Generates a report for the year 2020.</pre>
-</div>
+</li>
+<li>
+<p><code>report /w 12-02-2020</code><br>
+Generates a report for the week of 12/2/2020.</p>
+</li>
+<li>
+<p><code>report month jan</code> / <code>report month january</code><br>
+Generates a report for the month of January.</p>
+</li>
+<li>
+<p><code>report /y 2020</code><br>
+Generates a report for the year 2020.</p>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -349,35 +370,35 @@ Generates a report for the year 2020.</pre>
 </li>
 </ul>
 </div>
-<div class="ulist IMPORTANT">
-<ul class="IMPORTANT">
+<div class="paragraph">
+<p>IMPORTANT:
+* <code>START_DATE</code> cannot be a future date.<br>
+* <code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><code>START_DATE</code> cannot be a future date.</p>
-</li>
+<p>Both <code>[/f]</code> and <code>[t]</code> fields require the date format to be the following:<br>
+Examples</p>
+<div class="ulist">
+<ul>
 <li>
-<p><code>END_DATE</code> cannot be before the start date, or the earliest possible date if the [/f] field is empty.</p>
-</li>
-<li>
-<p>Both <code>[/f]</code> and <code>[t]</code> fields require the date format to be the following:
-<code>transaction /f 12-02-2020 /t 30-04-2020</code><br>
+<p><code>transaction /f 12-02-2020 /t 30-04-2020</code><br>
 Generates a transaction from 12/2/2020 to 30/4/2020.</p>
-<div class="literalblock">
-<div class="content">
-<pre>`transaction /w 12-02-2020` +
-Generates a transaction for the week of 12/2/2020.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>`transaction month jan` / `report month january` +
-Generates a transaction for the month of January.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>`transaction /y 2020` +
-Generates a transaction for the year 2020.</pre>
-</div>
+</li>
+<li>
+<p><code>transaction /w 12-02-2020</code><br>
+Generates a transaction for the week of 12/2/2020.</p>
+</li>
+<li>
+<p><code>transaction month jan</code> / <code>report month january</code><br>
+Generates a transaction for the month of January.</p>
+</li>
+<li>
+<p><code>transaction /y 2020</code><br>
+Generates a transaction for the year 2020.</p>
+</li>
+</ul>
 </div>
 </li>
 </ul>
@@ -387,6 +408,9 @@ Generates a transaction for the year 2020.</pre>
 <h3 id="reviewing-of-food-items-code-review-code"><a class="link" href="#reviewing-of-food-items-code-review-code">3.12. Reviewing of Food Items: <code>review</code></a></h3>
 <div class="paragraph">
 <p>This command allows the user to review food items from the transactions screen as shown in 3.12.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>review INDEX</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -400,14 +424,14 @@ User can update existing reviews by using the same command.
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Format: <code>review INDEX</code></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="rating-of-food-items-code-rate-code"><a class="link" href="#rating-of-food-items-code-rate-code">3.13. Rating of Food Items: <code>rate</code></a></h3>
 <div class="paragraph">
 <p>This command allows user to rate food items from the transactions screen as shown in 3.12.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>rate INDEX</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -420,9 +444,6 @@ User  can also update existing reviews by using the same command.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>Format: <code>rate INDEX</code></p>
 </div>
 </div>
 </div>
@@ -492,4 +513,4 @@ e.g. <code>transaction [/f START_DATE] [/t END_DATE]</code><br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-02 06:39:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-02 06:51:14 UTC</div></div></div></body></html>

@@ -59,12 +59,13 @@ public class BudgetCommand extends Command {
                 : new Budget();
     }
 
-    /** Helper function to hold a successful return message. */
+    /** Helper function to hold a successful return message for 'budget set'. */
     public static CommandResult commandSetSuccess(Budget budget) {
         return new CommandResult(COMMAND_WORD, String.format(MESSAGE_SET,
                 budget.getDurationAsString(), budget.getTotalBudget(), budget.getRemainingDailyBudget()));
     }
 
+    /** Helper function to hold a successful return message for 'budget view'. */
     public static CommandResult commandViewSuccess(Budget budget) {
         return new CommandResult(COMMAND_WORD, String.format(MESSAGE_VIEW,
                 budget.getDurationAsString(), budget.getTotalBudget(), budget.getRemainingBudget(),

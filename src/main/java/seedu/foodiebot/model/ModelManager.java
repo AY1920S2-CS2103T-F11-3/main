@@ -3,7 +3,6 @@ package seedu.foodiebot.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodiebot.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;

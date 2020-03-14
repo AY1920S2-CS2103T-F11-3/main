@@ -3,6 +3,7 @@ package seedu.foodiebot.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodiebot.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -177,15 +178,29 @@ public class ModelManager implements Model {
 
     /**
      * This function return a FileReader of the jsonfile (foodiebot.json).
-     * @return FileRead of the jsonfile
+     * @return FileReader of the jsonfile
      * @throws FileNotFoundException
      */
     @Override
-    public FileReader listOfCanteen() throws FileNotFoundException {
+    public FileReader listOfCanteens() throws FileNotFoundException {
         FoodieBotStorage foodieBotStorage =
                 new JsonFoodieBotStorage(userPrefs.getFoodieBotFilePath());
         return new FileReader(String.valueOf(foodieBotStorage.getCanteensFilePath()));
     }
+
+    /**
+     * This function return a FIleReader of the jsonfile (foodiebot-stalls.json).
+     * @return FileReader of the jsonfile
+     * @throws FileNotFoundException
+     */
+    @Override
+    public FileReader listOfStalls() throws FileNotFoundException {
+        FoodieBotStorage foodieBotStorage =
+                new JsonFoodieBotStorage(userPrefs.getFoodieBotFilePath(), userPrefs.getStallsFilePath(),
+                        userPrefs.getBudgetFilePath(), userPrefs.getFoodieBotFilePath());
+        return new FileReader(String.valueOf(foodieBotStorage.getStallsFilePath()));
+    }
+
 
     // =========== Filtered Person List Accessors
     // =============================================================
@@ -202,7 +217,6 @@ public class ModelManager implements Model {
     /**
      * Updates the filter of the filtered canteen list to filter by the given {@code predicate}.
      *
-     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
     @Override

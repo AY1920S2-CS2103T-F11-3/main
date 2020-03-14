@@ -16,6 +16,7 @@ public class Randomize {
 
     private String selectedCanteen = "";
     private String selectedStall = "";
+    private String output = "";
 
     private Random rand = new Random();
 
@@ -30,13 +31,21 @@ public class Randomize {
         return selectedCanteen;
     }
 
-    //public void getSelectedCanteen(ObservableList<Canteen> list) {
-    //    listSize = list.size();
-    //    index = rand.nextInt(listSize);
-    //    List<String> lst = new ArrayList<String>();
-    //    selectedCanteen = list.get(index).toString();
-    //}
+    /**
+     * This method return the name of the selected stall.
+     * @return String of the stall name
+     */
+    public String selectStall() {
+        return selectedStall;
+    }
 
+    /**
+     * This method return the output list option.
+     * @return String of options.
+     */
+    public String output() {
+        return output;
+    }
     /**
      * This function select a canteen from the jsonfile (foodiebot.json).
      * @param file which is provided from the RandomizeCommand
@@ -61,11 +70,37 @@ public class Randomize {
         }
     }
 
-    //public void parseCanteenObject (JSONObject canteen) {
-    //    JSONObject canteenObject = (JSONObject) canteen.get("canteen");
-    //    String canteenName = (String) canteenObject.get("name");
-    //    System.out.println(canteenName);
-    //    canteens.add(canteenName);
-    //}
+    /**
+     * This method produce a list of options from the jsonfile (foodiebot-stalls.json).
+     * @param file which is provided from the RandomizeCommand.
+     */
+    public void getOptions(FileReader file) {
+        int listSize;
+        int index;
+        int i = 0;
+        JSONParser parser = new JSONParser();
+        try {
+            JSONObject obj = (JSONObject) parser.parse(file);
+            JSONArray stallList = (JSONArray) obj.get("stalls");
+            //System.out.println((canteenList));
+
+            listSize = stallList.size();
+
+            while (i < 5) {
+                index = rand.nextInt(listSize);
+                JSONObject stall = (JSONObject) stallList.get(index);
+                selectedStall = (String) stall.get("name");
+                selectedCanteen = (String) stall.get("canteenName");
+                if (!output.contains(selectedStall)) {
+                    output = output + String.format("%d. %s: %s\n", i + 1, selectedCanteen, selectedStall);
+                    i++;
+                }
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

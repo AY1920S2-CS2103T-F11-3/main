@@ -9,6 +9,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import seedu.foodiebot.commons.core.Messages;
+import seedu.foodiebot.logic.commands.exceptions.CommandException;
+
 /**
  * Randomize a canteen, stall and food choice for the user
  */
@@ -74,7 +77,7 @@ public class Randomize {
      * This method produce a list of options from the jsonfile (foodiebot-stalls.json).
      * @param file which is provided from the RandomizeCommand.
      */
-    public void getOptions(FileReader file) {
+    public void getOptions(FileReader file) throws CommandException {
         int listSize;
         int index;
         int i = 0;
@@ -97,7 +100,7 @@ public class Randomize {
                 }
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            throw new CommandException(Messages.MESSAGE_INVALID_FILEREADER);
         }
     }
 

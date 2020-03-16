@@ -181,7 +181,7 @@ Format: `budget view`
 
 === View Expense Report: `*report*`
 
-This command generate a report for the spending and food purchases for any period specified. +
+This command generates a report for the spending and food purchases for any period specified. +
 
 Formats: `report`
 
@@ -248,7 +248,7 @@ TIP: User  can also update existing ratings by using the same command.
 *A*:
 
 *Q*: How can I edit the list of canteen if one canteen close down? +
-*A*:
+*A*: The json file is publish, you can download the json file and edit accordingly.
 
 == Command Summary
 [width="80%",cols="33%,<60%,<60%",options="header",]

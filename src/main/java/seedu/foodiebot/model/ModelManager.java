@@ -174,28 +174,41 @@ public class ModelManager implements Model {
 
     /**
      * This function return a FileReader of the jsonfile (foodiebot.json).
-     *
-     * @return FileRead of the jsonfile
+     * @return FileReader of the jsonfile
      * @throws FileNotFoundException
      */
     @Override
-    public FileReader listOfCanteen() throws FileNotFoundException {
+    public FileReader listOfCanteens() throws FileNotFoundException {
         FoodieBotStorage foodieBotStorage =
                 new JsonFoodieBotStorage(userPrefs.getFoodieBotFilePath());
         return new FileReader(String.valueOf(foodieBotStorage.getCanteensFilePath()));
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * This function return a FileReader of the jsonfile (foodiebot-stalls.json).
+     * @return FileReader of the jsonfile
+     * @throws FileNotFoundException
+     */
+    @Override
+    public FileReader listOfStalls() throws FileNotFoundException {
+        FoodieBotStorage foodieBotStorage =
+                new JsonFoodieBotStorage(userPrefs.getFoodieBotFilePath(), userPrefs.getStallsFilePath(),
+                        userPrefs.getBudgetFilePath(), userPrefs.getFoodieBotFilePath(),
+                        userPrefs.getFavoriteFoodFilePath());
+        return new FileReader(String.valueOf(foodieBotStorage.getStallsFilePath()));
+    }
+
+
+    // =========== Filtered Canteen List Accessors
+    // =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Canteen}
      */
     @Override
     public ObservableList<Canteen> getFilteredCanteenList() {
         return filteredCanteens;
     }
-
-    // =========== Filtered Person List Accessors
-    // =============================================================
 
     /**
      * Get filtered canteen list sorted by distance

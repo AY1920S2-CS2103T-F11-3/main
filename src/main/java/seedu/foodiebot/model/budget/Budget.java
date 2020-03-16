@@ -146,9 +146,18 @@ public class Budget {
         return this.cycleRange;
     }
 
-    /** Set the remaining budget */
-    public void setRemainingBudget(float expenses) {
+    public void subtractFromRemainingBudget(float expenses) {
         this.remainingBudget -= expenses;
+        if (this.remainingBudget < 0) {
+            this.remainingBudget = 0;
+        }
+    }
+
+    public void addToRemainingBudget(float expenses) {
+        this.remainingBudget += expenses;
+        if (this.remainingBudget > this.totalBudget) {
+            this.remainingBudget = this.totalBudget;
+        }
     }
     /** Check if this is a default value */
     public boolean isDefaultBudget() {

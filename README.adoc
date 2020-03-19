@@ -1,10 +1,13 @@
-= Cooking Papa
+= FoodieBot
+
+image:https://api.codacy.com/project/badge/Grade/972f10aa57814f56b121362a07dfe932[link="https://app.codacy.com/gh/AY1920S2-CS2103T-F11-3/main?utm_source=github.com&utm_medium=referral&utm_content=AY1920S2-CS2103T-F11-3/main&utm_campaign=Badge_Grade_Settings"]
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
-https://travis-ci.org/AY1920S2-CS2103T-F11-4/main[image:https://travis-ci.org/AY1920S2-CS2103T-F11-4/main.svg?branch=master[Build Status]]
-https://ci.appveyor.com/project/teo-jun-xiong/main[image:https://ci.appveyor.com/api/projects/status/mkams6irqolkr5gp?svg=true[Build status]]
-https://coveralls.io/github/AY1920S2-CS2103T-F11-4/main?branch=master[image:https://coveralls.io/repos/github/AY1920S2-CS2103T-F11-4/main/badge.svg?branch=master[Coverage Status]]
-https://www.codacy.com/app/damith/addressbook-level3?utm_source=github.com&utm_medium=referral&utm_content=se-edu/addressbook-level3&utm_campaign=Badge_Grade[image:https://api.codacy.com/project/badge/Grade/fc0b7775cf7f4fdeaf08776f3d8e364a[Codacy Badge]]
+https://travis-ci.org/AY1920S2-CS2103T-F11-3/main[image:https://travis-ci.org/AY1920S2-CS2103T-F11-3/main.svg?branch=master[Build Status]]
+https://ci.appveyor.com/project/damithc/addressbook-level3[image:https://ci.appveyor.com/api/projects/status/3boko2x2vr5cc3w2?svg=true[Build status]]
+https://coveralls.io/github/AY1920S2-CS2103T-F11-3/main?branch=master[image:https://coveralls.io/repos/github/AY1920S2-CS2103T-F11-3/main/badge.svg?branch=master[Coverage Status]]
+
+
 
 ifdef::env-github[]
 image::docs/images/Ui.png[width="600"]
@@ -14,14 +17,18 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* This is a desktop Address Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* Summary
-* Target audience
+FoodieBot is a campus food locator application which can help students look for food they want, by recommending the canteens nearest to them.
+
+Our target users are students, staff and tourists. In general anyone who comes to or visits NUS.
+
+In particular, for the indecisive user, this application can give a random food suggestion tailored to each user based on their budget and/ or past food selections etcetera.
+
 
 == Site Map
 
 * <<UserGuide#, User Guide>>
 * <<DeveloperGuide#, Developer Guide>>
+* <<LearningOutcomes#, Learning Outcomes>>
 * <<AboutUs#, About Us>>
 * <<ContactUs#, Contact Us>>
 
@@ -29,6 +36,7 @@ endif::[]
 
 * Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
 _Marco Jakob_.
+* Original source code from https://se-education.org
 * Libraries used: https://openjfx.io/[JavaFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/junit-team/junit5[JUnit5]
 
 == Licence : link:LICENSE[MIT]

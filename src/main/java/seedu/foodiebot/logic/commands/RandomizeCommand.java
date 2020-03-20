@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.io.FileReader;
 import java.io.IOException;
 
+import seedu.foodiebot.logic.commands.exceptions.CommandException;
 import seedu.foodiebot.model.Model;
 import seedu.foodiebot.model.randomize.Randomize;
 
@@ -16,20 +17,31 @@ public class RandomizeCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Here are the choices: \n%s";
 
-    private final Randomize randomize = new Randomize();
+    private final Randomize randomize;
 
-    public RandomizeCommand() {
+    private String prefix;
+    private String action;
+
+    public RandomizeCommand(String prefix, String action) {
+        this.prefix = prefix;
+        this.action = action;
+        this.randomize = new Randomize(prefix, action);
     }
 
     @Override
-    public CommandResult execute(Model model) throws IOException {
-        requireNonNull(model);
-        FileReader file = model.listOfCanteen();
-        //ObservableList<Canteen> list = model.getFilteredCanteenList();
-        randomize.getSelectedCanteen(file);
-        return new CommandResult(COMMAND_WORD, String.format(MESSAGE_SUCCESS, randomize.selectCanteen()));
-    }
+    public CommandResult execute(Model model) throws CommandException, IOException {
 
+        requireNonNull(model);
+        FileReader fileC = model.listOfCanteens();
+        FileReader fileS = model.listOfStalls();
+        if (prefix.contains("c")) {
+            randomize.setCanteens(fileC);
+            randomize.getOptionsByCanteen(fileS);
+        } else {
+            randomize.getOptions(fileS);
+        }
+        return new CommandResult(COMMAND_WORD, String.format(MESSAGE_SUCCESS, randomize.output()));
+    }
     @Override
     public boolean needToSaveCommand() {
         return false;

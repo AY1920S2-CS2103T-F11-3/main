@@ -5,6 +5,8 @@ import static seedu.foodiebot.logic.parser.CliSyntax.PREFIX_DATE_BY_MONTH;
 import static seedu.foodiebot.logic.parser.CliSyntax.PREFIX_DATE_BY_WEEK;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.foodiebot.commons.core.date.DateRange;
@@ -21,45 +23,54 @@ public class Budget {
     private final float totalBudget;
     private float remainingBudget;
     private final String duration;
-    private final LocalDate dateOfCreation;
+    private final LocalDateTime dateTimeOfCreation;
     private DateRange cycleRange;
 
 
     /**
-     * Constructs a {@code Budget} object. */
-    public Budget(float totalBudget, float remainingBudget,
-                  String duration, LocalDate dateOfCreation, DateRange cycleRange) {
+     * Constructs a Budget object.
+     * @param totalBudget The value of the budget.
+     * @param remainingBudget The value of the remaining budget.
+     * @param duration The duration cycle of the budget.
+     * @param dateTimeOfCreation The date and time this object was created.
+     * @param cycleRange The date range of the budget cycle.
+     */
+    public Budget(float totalBudget, float remainingBudget, String duration,
+                  LocalDateTime dateTimeOfCreation, DateRange cycleRange) {
         this.totalBudget = totalBudget;
         this.remainingBudget = remainingBudget;
         this.duration = duration;
-        this.dateOfCreation = dateOfCreation;
+        this.dateTimeOfCreation = dateTimeOfCreation;
         this.cycleRange = cycleRange;
     }
 
-    public Budget(float totalBudget, float remainingBudget,
-                  String duration, LocalDate dateOfCreation) {
-        this.totalBudget = totalBudget;
-        this.remainingBudget = remainingBudget;
-        this.duration = duration;
-        this.dateOfCreation = dateOfCreation;
-        this.cycleRange = setCycleRange(duration);
-    }
 
-    public Budget(float totalBudget, float remainingBudget,
-                  String duration, LocalDate dateOfCreation, LocalDate startDate, LocalDate endDate) {
+    /**
+     * Constructs a Budget object.
+     * @param totalBudget The value of the budget.
+     * @param remainingBudget The value of the remaining budget.
+     * @param duration The duration cycle of the budget.
+     * @param dateTimeOfCreation The date and time this object was created.
+     * @param cycleStartDate The start date of the budget cycle.
+     * @param cycleEndDate The end date of the budget cycle.
+     */
+    public Budget(float totalBudget, float remainingBudget, String duration,
+                  LocalDateTime dateTimeOfCreation,
+                  LocalDate cycleStartDate, LocalDate cycleEndDate) {
         this.totalBudget = totalBudget;
         this.remainingBudget = remainingBudget;
         this.duration = duration;
-        this.dateOfCreation = dateOfCreation;
+        this.dateTimeOfCreation = dateTimeOfCreation;
 
         DateRange range;
         try {
-            range = DateRange.of(startDate, endDate);
+            range = DateRange.of(cycleStartDate, cycleEndDate);
         } catch (ParseException pe) {
             range = null;
         }
         this.cycleRange = range;
     }
+
 
 
     /**
@@ -68,7 +79,11 @@ public class Budget {
      * @param duration The duration cycle of the budget.
      */
     public Budget(float totalBudget, String duration) {
-        this(totalBudget, totalBudget, duration, LocalDate.now());
+        this.totalBudget = totalBudget;
+        this.remainingBudget = totalBudget;
+        this.duration = duration;
+        this.dateTimeOfCreation = LocalDateTime.now();
+        this.cycleRange = setCycleRange(duration);
     }
 
     public Budget() {
@@ -135,9 +150,20 @@ public class Budget {
                     ? "weekly"
                     : "monthly";
     }
-    /** Return the date where the budget is created */
+    /** Return the date where the budget is created. */
     public LocalDate getDateOfCreation() {
-        return this.dateOfCreation;
+        // return this.dateOfCreation;
+        return this.dateTimeOfCreation.toLocalDate();
+    }
+
+    /** Return the time when the budget is created. */
+    public LocalTime getTimeOfCreation() {
+        // return this.timeOfCreation;
+        return this.dateTimeOfCreation.toLocalTime();
+    }
+
+    public LocalDateTime getDateTimeOfCreation() {
+        return this.dateTimeOfCreation;
     }
 
     /** Return the cycle for which this budget is for. */
@@ -183,7 +209,7 @@ public class Budget {
 
     @Override
     public int hashCode() {
-        return Objects.hash(totalBudget, remainingBudget, duration, dateOfCreation, cycleRange);
+        return Objects.hash(totalBudget, remainingBudget, duration, dateTimeOfCreation, cycleRange);
     }
 
 

@@ -20,12 +20,15 @@ import javafx.stage.Stage;
 import seedu.foodiebot.MainApp;
 import seedu.foodiebot.commons.core.LogsCenter;
 import seedu.foodiebot.logic.Logic;
+import seedu.foodiebot.logic.commands.BudgetCommand;
 import seedu.foodiebot.logic.commands.CommandResult;
 import seedu.foodiebot.logic.commands.DirectionsCommandResult;
 import seedu.foodiebot.logic.commands.EnterCanteenCommand;
 import seedu.foodiebot.logic.commands.ExitCommand;
 import seedu.foodiebot.logic.commands.FavoritesCommand;
 import seedu.foodiebot.logic.commands.ListCommand;
+import seedu.foodiebot.logic.commands.RateCommand;
+import seedu.foodiebot.logic.commands.ReviewCommand;
 import seedu.foodiebot.logic.commands.TransactionsCommand;
 import seedu.foodiebot.logic.commands.exceptions.CommandException;
 import seedu.foodiebot.logic.parser.ParserContext;
@@ -215,6 +218,18 @@ abstract class BaseScene {
                 handleListFavorites();
                 break;
             case TransactionsCommand.COMMAND_WORD:
+                updateResultDisplay(commandResult.getFeedbackToUser());
+                handleListTransactions();
+                break;
+            case BudgetCommand.COMMAND_WORD:
+                updateResultDisplay(commandResult.getFeedbackToUser());
+                handleListTransactions();
+                break;
+            case RateCommand.COMMAND_WORD:
+                updateResultDisplay(commandResult.getFeedbackToUser());
+                handleListTransactions();
+                break;
+            case ReviewCommand.COMMAND_WORD:
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
                 break;

@@ -5,8 +5,8 @@ import static seedu.foodiebot.logic.parser.CliSyntax.PREFIX_DATE_BY_MONTH;
 import static seedu.foodiebot.logic.parser.CliSyntax.PREFIX_DATE_BY_WEEK;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import seedu.foodiebot.commons.core.date.DateRange;
@@ -71,6 +71,14 @@ public class Budget {
         this.cycleRange = range;
     }
 
+    public Budget(float totalBudget, float remainingBudget, String duration,
+                  LocalDateTime dateTimeOfCreation) {
+        this.totalBudget = totalBudget;
+        this.remainingBudget = remainingBudget;
+        this.duration = duration;
+        this.dateTimeOfCreation = dateTimeOfCreation;
+        this.cycleRange = setCycleRange(duration, dateTimeOfCreation.toLocalDate());
+    }
 
 
     /**
@@ -86,21 +94,28 @@ public class Budget {
         this.cycleRange = setCycleRange(duration);
     }
 
+    /**
+     * Constructs an empty default budget.
+     */
     public Budget() {
         this(Float.MAX_VALUE, DAILY);
     }
 
-    /** Sets a DateRange based on the duration of the budget cycle and the system date. */
-    private DateRange setCycleRange(String duration) {
+    /** Sets a DateRange based on the duration of the budget cycle and the system date.
+     * @param duration The duration of the budget cycle.
+     * @param date the start date of the budget cycle.
+     * @return a DateRange representing the range of dates in the budget cycle.
+     */
+    private DateRange setCycleRange(String duration, LocalDate date) {
         try {
             if (duration.equals(DAILY)) {
-                return DateRange.ofSingle(LocalDate.now());
+                return DateRange.ofSingle(date);
 
             } else if (duration.equals(WEEKLY)) {
-                return DateRange.of(LocalDate.now(), LocalDate.now().plusWeeks(1).minusDays(1));
+                return DateRange.of(date, date.plusWeeks(1).minusDays(1));
 
             } else if (duration.equals(MONTHLY)) {
-                return DateRange.of(LocalDate.now(), LocalDate.now().plusMonths(1).minusDays(1));
+                return DateRange.of(date, date.plusMonths(1).minusDays(1));
 
             }
 
@@ -108,6 +123,11 @@ public class Budget {
             return null;
         }
         return null;
+    }
+
+    /** Sets a DateRange based on the duration of the budget cycle and the system date. */
+    private DateRange setCycleRange(String duration) {
+        return setCycleRange(duration, LocalDate.now());
     }
 
     /** Resets the remaining budget to  */

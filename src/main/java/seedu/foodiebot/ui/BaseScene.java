@@ -29,6 +29,7 @@ import seedu.foodiebot.logic.commands.FavoritesCommand;
 import seedu.foodiebot.logic.commands.ListCommand;
 import seedu.foodiebot.logic.commands.RateCommand;
 import seedu.foodiebot.logic.commands.ReviewCommand;
+import seedu.foodiebot.logic.commands.RandomizeCommand;
 import seedu.foodiebot.logic.commands.TransactionsCommand;
 import seedu.foodiebot.logic.commands.exceptions.CommandException;
 import seedu.foodiebot.logic.parser.ParserContext;
@@ -169,6 +170,11 @@ abstract class BaseScene {
 
     }
 
+    @FXML
+    public void handleListRandomize() {
+        addToListPanel(new RandomizeListPanel(logic.getFilteredRandomizeList()));
+    }
+
     /** The method passed from logic to UI. */
     protected CommandResult executeCommand(String commandText)
         throws CommandException, ParseException, IOException {
@@ -221,17 +227,25 @@ abstract class BaseScene {
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
                 break;
+
             case BudgetCommand.COMMAND_WORD:
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
                 break;
+                
             case RateCommand.COMMAND_WORD:
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
                 break;
+                
             case ReviewCommand.COMMAND_WORD:
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
+                break;
+
+            case RandomizeCommand.COMMAND_WORD:
+                updateResultDisplay(commandResult.getFeedbackToUser());
+                handleListRandomize();
                 break;
             case ExitCommand.COMMAND_WORD:
                 updateResultDisplay(commandResult.getFeedbackToUser());

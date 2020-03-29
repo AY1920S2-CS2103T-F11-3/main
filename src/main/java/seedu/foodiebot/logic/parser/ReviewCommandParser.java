@@ -32,5 +32,4 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
             throw new ParseException("Invalid command input!");
         }
     }
-
 }

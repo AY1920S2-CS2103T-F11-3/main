@@ -2,7 +2,6 @@ package seedu.foodiebot.logic.parser;
 
 import static seedu.foodiebot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodiebot.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.foodiebot.logic.parser.ParserContext.INVALID_CONTEXT_MESSAGE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

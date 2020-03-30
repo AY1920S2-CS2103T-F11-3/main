@@ -18,8 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import seedu.foodiebot.MainApp;
+import seedu.foodiebot.commons.core.GuiSettings;
 import seedu.foodiebot.commons.core.LogsCenter;
 import seedu.foodiebot.logic.Logic;
+
+import seedu.foodiebot.logic.commands.ActionCommandResult;
 import seedu.foodiebot.logic.commands.BudgetCommand;
 import seedu.foodiebot.logic.commands.CommandResult;
 import seedu.foodiebot.logic.commands.DirectionsCommandResult;
@@ -35,15 +38,17 @@ import seedu.foodiebot.logic.commands.exceptions.CommandException;
 import seedu.foodiebot.logic.parser.ParserContext;
 import seedu.foodiebot.logic.parser.exceptions.ParseException;
 
-/** Base class for creating a javafx scene. */
+/**
+ * Base class for creating a javafx scene.
+ */
 abstract class BaseScene {
     public static final String FXML_FILE_FOLDER = "/view/";
-    // Independent Ui parts residing in this Ui container
+    @FXML
+    protected MenuItem helpMenuItem;
 
     protected Logic logic;
     protected Stage primaryStage;
-    @FXML
-    protected MenuItem helpMenuItem;
+    // Independent Ui parts residing in this Ui container
     private final Logger logger = LogsCenter.getLogger(getClass());
     @FXML
     private StackPane statusbarPlaceholder;
@@ -60,11 +65,20 @@ abstract class BaseScene {
     private HelpWindow helpWindow;
 
 
+
     public BaseScene(Stage primaryStage, Logic logic) {
         this.primaryStage = primaryStage;
         this.logic = logic;
         fillInnerParts();
         helpWindow = new HelpWindow();
+
+    }
+
+    private static URL getFxmlFileUrl(String fxmlFileName) {
+        requireNonNull(fxmlFileName);
+        String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
+        URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
+        return requireNonNull(fxmlFileUrl);
     }
 
     void addToListPanel(UiPart<Region> regionUiPart) {
@@ -75,11 +89,12 @@ abstract class BaseScene {
 
     /**
      * Clears the extraListPanel and adds the regionUiPart
+     *
      * @param regionUiPart
      */
     void addToExtraListPanel(UiPart<Region> regionUiPart) {
         extraListPanelPlaceholder = (StackPane) primaryStage.getScene().lookup(
-                "#extraListPanelPlaceholder");
+            "#extraListPanelPlaceholder");
         extraListPanelPlaceholder.getChildren().clear();
         extraListPanelPlaceholder.getChildren().add(regionUiPart.getRoot());
     }
@@ -99,12 +114,12 @@ abstract class BaseScene {
         commandBox.getCommandTextField().requestFocus();
     }
 
-
     void updateStatusFooter(String message) {
         statusbarPlaceholder = (StackPane) primaryStage.getScene().lookup("#statusbarPlaceholder");
         statusbarPlaceholder.getChildren().clear();
         statusbarPlaceholder.getChildren().add(new Label(message));
     }
+
     StackPane getResultDisplayPlaceholder() {
         resultDisplayPlaceholder = (StackPane) primaryStage.getScene().lookup("#resultDisplayPlaceholder");
         return resultDisplayPlaceholder;
@@ -114,8 +129,9 @@ abstract class BaseScene {
         resultDisplay = new ResultDisplay();
         return resultDisplay;
     }
-
-    /** .*/
+    /**
+     * .
+     */
     void updateResultDisplay(String result) {
         resultDisplayPlaceholder = (StackPane) primaryStage.getScene().lookup("#resultDisplayPlaceholder");
         resultDisplay = new ResultDisplay();
@@ -125,11 +141,17 @@ abstract class BaseScene {
         }
     }
 
+    void updateResultDisplayContextAware(String result) {
+        if (!ParserContext.getCurrentContext().equals(ParserContext.DIRECTIONS_CONTEXT)) {
+            updateResultDisplay(result);
+        }
+    }
+
     @FXML
     public void handleListStalls() {
         addToListPanel(new StallsListPanel(logic.getFilteredStallList(true)));
         addToExtraListPanel(new CanteenListPanel(FXCollections.observableArrayList(
-                ParserContext.getCurrentCanteen().get()), false));
+            ParserContext.getCurrentCanteen().get()), false));
     }
 
     /**
@@ -139,7 +161,7 @@ abstract class BaseScene {
     public void handleListFood() {
         addToListPanel(new FoodListPanel(logic.getFilteredFoodList(true)));
         addToExtraListPanel(new StallsListPanel(FXCollections.observableArrayList(
-                ParserContext.getCurrentStall().get())));
+            ParserContext.getCurrentStall().get())));
     }
 
     /**
@@ -147,10 +169,18 @@ abstract class BaseScene {
      */
     @FXML
     public void handleListFavorites() {
-        addToListPanel(new FoodListPanel(logic.getFilteredFavoriteFoodList(false)));
+        extraListPanelPlaceholder = (StackPane) primaryStage.getScene().lookup(
+            "#extraListPanelPlaceholder");
+        if (extraListPanelPlaceholder != null) {
+            extraListPanelPlaceholder.getChildren().clear();
+        }
+        addToListPanel(new FoodListPanel(logic.getFilteredFavoriteFoodList(true)));
+
     }
 
-    /** .*/
+    /**
+     * .
+     */
     @FXML
     public void handleListCanteens(CommandResult commandResult) {
         changeScene("MainScene.fxml");
@@ -161,7 +191,20 @@ abstract class BaseScene {
                 : logic.getFilteredCanteenList(), commandResult.isLocationSpecified()));
     }
 
-    /** Fills the foodListPanel region.*/
+    /**
+     * .
+     */
+    @FXML
+    public void handleListCanteens() {
+        changeScene("MainScene.fxml");
+        new MainScene(primaryStage, logic);
+        addToListPanel(new CanteenListPanel(
+            logic.getFilteredCanteenList(), false));
+    }
+
+    /**
+     * Fills the foodListPanel region.
+     */
     @FXML
     public void handleListTransactions() {
         // changeScene("MainScene.fxml");
@@ -172,10 +215,14 @@ abstract class BaseScene {
 
     @FXML
     public void handleListRandomize() {
+        changeScene("MainScene.fxml");
+        new MainScene(primaryStage, logic);
         addToListPanel(new RandomizeListPanel(logic.getFilteredRandomizeList()));
     }
 
-    /** The method passed from logic to UI. */
+    /**
+     * The method passed from logic to UI.
+     */
     protected CommandResult executeCommand(String commandText)
         throws CommandException, ParseException, IOException {
         CommandResult commandResult = null;
@@ -194,7 +241,6 @@ abstract class BaseScene {
                 ParserContext.setCurrentContext(ParserContext.DIRECTIONS_CONTEXT);
                 primaryStage.getScene().setRoot(pane);
                 new DirectionsScene(primaryStage, logic, (DirectionsCommandResult) commandResult);
-
             }
 
             switch (commandResult.commandName) {
@@ -210,41 +256,54 @@ abstract class BaseScene {
                 }
                 break;
             case EnterCanteenCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
-                if (ParserContext.getCurrentContext().equals(ParserContext.MAIN_CONTEXT)) {
+                if (ParserContext.getCurrentContext().equals(ParserContext.MAIN_CONTEXT)
+                    && ParserContext.getCurrentCanteen().isPresent()) {
                     ParserContext.setCurrentContext(ParserContext.CANTEEN_CONTEXT);
                     handleListStalls();
-                } else if (ParserContext.getCurrentContext().equals(ParserContext.CANTEEN_CONTEXT)) {
+                } else if (ParserContext.getCurrentContext().equals(ParserContext.CANTEEN_CONTEXT)
+                    && ParserContext.getCurrentStall().isPresent()) {
                     ParserContext.setCurrentContext(ParserContext.STALL_CONTEXT);
                     handleListFood();
                 }
+                updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case FavoritesCommand.COMMAND_WORD:
+                assert commandResult instanceof ActionCommandResult;
+                switch (((ActionCommandResult) commandResult).action) {
+                case "view":
+                    handleListFavorites();
+                    break;
+                case "set":
+                    break;
+                case "remove":
+                    handleListFavorites();
+                    break;
+                default:
+                    break;
+                }
                 updateResultDisplay(commandResult.getFeedbackToUser());
-                handleListFavorites();
                 break;
             case TransactionsCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
+                updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case BudgetCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
+                updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case RateCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
+                updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case ReviewCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListTransactions();
+                updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case RandomizeCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
                 handleListRandomize();
+                updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case ExitCommand.COMMAND_WORD:
-                updateResultDisplay(commandResult.getFeedbackToUser());
                 switch (ParserContext.getCurrentContext()) {
                 case ParserContext.MAIN_CONTEXT:
                     handleListCanteens(commandResult);
@@ -252,14 +311,25 @@ abstract class BaseScene {
                 case ParserContext.CANTEEN_CONTEXT:
                     handleListStalls();
                     break;
+                case ParserContext.FAVORITE_CONTEXT:
+                    switch (ParserContext.getPreviousContext()) {
+                    case ParserContext.STALL_CONTEXT:
+                        handleListStalls();
+                        ParserContext.setCurrentContext(ParserContext.CANTEEN_CONTEXT);
+                        break;
+                    default:
+                        handleListCanteens();
+                        ParserContext.setCurrentContext(ParserContext.MAIN_CONTEXT);
+                        break;
+                    }
+                    break;
                 case ParserContext.STALL_CONTEXT:
                     handleListFood();
                     break;
                 default:
                     break;
                 }
-                if (commandResult.isExit()) {
-                }
+                updateResultDisplayContextAware(commandResult.getFeedbackToUser());
                 break;
             default:
                 updateResultDisplay(commandResult.getFeedbackToUser());
@@ -268,15 +338,31 @@ abstract class BaseScene {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
+
+            if (commandResult.isExit()) {
+                handleExit();
+            }
             return commandResult;
         } catch (CommandException | ParseException | IOException e) {
-            updateResultDisplay(e.getMessage());
+            updateResultDisplayContextAware(e.getMessage());
             throw e;
         }
     }
 
-
-    /** Switches the scene of the stage by setting the root. */
+    /**
+     * Closes the application.
+     */
+    @FXML
+    protected void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+            (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
+        primaryStage.hide();
+    }
+    /**
+     * Switches the scene of the stage by setting the root.
+     */
     protected void changeScene(String layoutName) {
         primaryStage.getScene().setRoot(loadFxmlFile(layoutName));
     }
@@ -285,7 +371,7 @@ abstract class BaseScene {
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
-    private void handleHelp() {
+    protected void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -293,7 +379,9 @@ abstract class BaseScene {
         }
     }
 
-    /** .*/
+    /**
+     * .
+     */
     protected Parent loadFxmlFile(String fxmlFileName) {
         FXMLLoader newLoader = new FXMLLoader();
         newLoader.setLocation(getFxmlFileUrl(fxmlFileName));
@@ -303,12 +391,5 @@ abstract class BaseScene {
         } catch (IOException e) {
             throw new AssertionError(e);
         }
-    }
-
-    private static URL getFxmlFileUrl(String fxmlFileName) {
-        requireNonNull(fxmlFileName);
-        String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
-        URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
-        return requireNonNull(fxmlFileUrl);
     }
 }

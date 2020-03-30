@@ -14,9 +14,12 @@ public class ParserContext {
     public static final String STALL_CONTEXT = "STALL";
     public static final String DIRECTIONS_CONTEXT = "GOTO";
     public static final String TRANSACTIONS_CONTEXT = "TRANSACTIONS";
-    public static final String INVALID_CONTEXT_MESSAGE = "Wrong Context to Call Message. Current Context: ";
+    public static final String INVALID_CONTEXT_MESSAGE = "Wrong context to use this command. Current Context: ";
+    public static final String SUGGESTED_CONTEXT_MESSAGE = "Context to use this command in: ";
+    public static final String FAVORITE_CONTEXT = "FAVORITE";
 
     private static String currentContext = ParserContext.MAIN_CONTEXT;
+    private static String previousContext = ParserContext.MAIN_CONTEXT;
 
     private static Optional<Canteen> currentCanteen = Optional.empty();
     private static Optional<Stall> currentStall = Optional.empty();
@@ -25,7 +28,12 @@ public class ParserContext {
         return currentContext;
     }
 
+    public static String getPreviousContext() {
+        return previousContext;
+    }
+
     public static void setCurrentContext(String context) {
+        previousContext = currentContext;
         currentContext = context;
     }
 

@@ -1,5 +1,7 @@
 package seedu.foodiebot.logic.parser;
 
+import static seedu.foodiebot.commons.core.Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX;
+
 import java.util.stream.Stream;
 
 import seedu.foodiebot.commons.core.index.Index;
@@ -33,18 +35,19 @@ public class EnterCanteenCommandParser implements Parser<EnterCanteenCommand> {
         Index index;
 
         if (!ParserContext.getCurrentContext().equals(ParserContext.MAIN_CONTEXT)) {
-            throw new ParseException(ParserContext.INVALID_CONTEXT_MESSAGE + ParserContext.getCurrentContext());
+            throw new ParseException(ParserContext.INVALID_CONTEXT_MESSAGE + ParserContext.getCurrentContext()
+                    + "\n" + ParserContext.SUGGESTED_CONTEXT_MESSAGE
+                    + ParserContext.MAIN_CONTEXT + ", " + ParserContext.CANTEEN_CONTEXT);
         }
 
-        //checks if the args is an index or a name
         try {
-            ParserUtil.parseIndex(enteredText);
-        } catch (ParseException pe) {
-            String canteenName = ParserUtil.parseCanteenName(enteredText);
-            return new EnterCanteenCommand(canteenName);
+            index = ParserUtil.parseCanteenIndex(enteredText);
+            return new EnterCanteenCommand(index);
+        } catch (Exception ex) {
+            if (ex instanceof IndexOutOfBoundsException) {
+                throw new ParseException(MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
+            return new EnterCanteenCommand(enteredText);
         }
-
-        index = ParserUtil.parseCanteenIndex(enteredText);
-        return new EnterCanteenCommand(index);
     }
 }

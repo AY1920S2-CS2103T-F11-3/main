@@ -48,10 +48,6 @@ public class ReportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.loadFilteredTransactionsList();
-
-        model.getReport().create(
-                model.getFilteredTransactionsList(), purchase -> dateRange.contains(purchase.getDateAdded()));
 
         try {
             if (dateRange.getStartDate().equals(DefiniteDate.MIN_DATE)) {

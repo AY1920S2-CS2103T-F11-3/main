@@ -41,6 +41,8 @@ public class SelectItemCommand extends Command {
             + "Your remaining budget is $%.2f\nYou still have $%.2f to spend today:)";
     public static final String MESSAGE_FAILURE = "Food not found!";
     public static final String INVALID_INDEX_MESSAGE = "Please provide a valid index!";
+    public static final String EXCEEDED_BUDGET = "You will exceed your budget with this purchase!\n" +
+            "Try increasing your budget.";
     private static final Logger logger = LogsCenter.getLogger(SelectItemCommand.class);
 
     private final Optional<String> foodName;
@@ -109,6 +111,11 @@ public class SelectItemCommand extends Command {
 
         if (model.getBudget().isPresent()) {
             Budget savedBudget = model.getBudget().get();
+
+            if (savedBudget.getRemainingBudget() < priceOfFood) {
+                throw new CommandException(EXCEEDED_BUDGET);
+            }
+
             savedBudget.subtractFromRemainingBudget(priceOfFood);
 
             model.setBudget(savedBudget);

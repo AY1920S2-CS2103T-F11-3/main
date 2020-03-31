@@ -6,7 +6,6 @@ import static seedu.foodiebot.logic.parser.CliSyntax.PREFIX_DATE_BY_WEEK;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Objects;
 
 import seedu.foodiebot.commons.core.date.DateRange;

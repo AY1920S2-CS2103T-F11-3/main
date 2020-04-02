@@ -102,7 +102,7 @@ public class Randomize {
                     .append(action);
         }
         //else if (isLessThanFiveOption) {
-            //output.append("There are less than 5 stores in this canteen. This is all the result.");
+        //    output.append("There are less than 5 stores in this canteen. This is all the result.");
         //}
         return output.toString();
     }
@@ -210,7 +210,7 @@ public class Randomize {
      * This methods generate 1 random option.
      * @param stalls
      */
-    private void generateOneOption(List<Stall> stalls){
+    private void generateOneOption(List<Stall> stalls) {
         int index = rand.nextInt(stalls.size());
         Stall stall = stalls.get(index);
         selectedCanteen = stall.getCanteenName();

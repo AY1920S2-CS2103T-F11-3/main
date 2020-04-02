@@ -2,7 +2,6 @@ package seedu.foodiebot.model.food;
 
 import static seedu.foodiebot.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,7 +23,7 @@ public class Food {
             "Chicken Rice Set", "Fried Kway Teow", "Laksa Yong Tau Foo", "Vegetarian Set",
             "Fried Fish", "Carbonara", "Assorted Salads", "Ayam Penyet"};
     public static final String IMAGE_FOLDER = "/images/canteen/";
-    public static final String MESSAGE_CONSTRAINTS = "Food name should be from " + Arrays.toString(FOOD);
+    public static final String MESSAGE_CONSTRAINTS = "Food not found";
     public static final String INVALID_FOOD_INDEX = "Please provide a valid food index";
 
     // Identity fields
@@ -113,14 +112,6 @@ public class Food {
         return otherCanteen != null
                 && otherCanteen.getName().equals(getName())
                 && (otherCanteen.getPrice() == (getPrice()));
-    }
-
-    /**
-     * Returns true if the {@code trimmedFoodName} is a valid Food name
-     */
-    public static boolean isValidFood(String trimmedFoodName) {
-        return Arrays.stream(FOOD)
-                .anyMatch(trimmedFoodName::equalsIgnoreCase);
     }
 
     /**

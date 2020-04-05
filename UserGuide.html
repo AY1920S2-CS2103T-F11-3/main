@@ -13,7 +13,7 @@
 <li><a href="#about-this-document">2. About this Document</a>
 <ul class="sectlevel2">
 <li><a href="#symbols-and-notations-used">2.1. Symbols and Notations Used</a></li>
-<li><a href="#definition-of-common-words-use">2.2. Definition of Common Words Use</a></li>
+<li><a href="#definition-of-common-words-used">2.2. Definition of Common Words Used</a></li>
 <li><a href="#how-to-use-this-document">2.3. How to Use this Document</a></li>
 </ul>
 </li>
@@ -35,8 +35,8 @@
 <li><a href="#rate-food-items-code-strong-rate-strong-code">4.13. Rate Food Items: <code><strong>rate</strong></code></a></li>
 <li><a href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.14. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></li>
 <li><a href="#view-favorited-food-items-code-strong-favorites-view-strong-code">4.15. View Favorited Food Items: <code><strong>favorites view</strong></code></a></li>
-<li><a href="#remove-favorited-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorited Food Items: <code><strong>favorites remove</strong></code></a></li>
-<li><a href="#filter-canteens-or-stalls-code-strong-filter-strong-code">4.17. Filter Canteens or Stalls: <code><strong>filter</strong></code></a></li>
+<li><a href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></li>
+<li><a href="#filter-canteens-stalls-or-food-code-strong-filter-strong-code">4.17. Filter Canteens, Stalls or Food: <code><strong>filter</strong></code></a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -48,7 +48,9 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>FoodieBot is an all-in-one application created for students, staff and visitors, to help  with everyday&#8217;s campus dining needs. Whether you need a random suggestion of what to eat, directions to get to the canteen, help in planning your budget for the week, or just want to see what each canteen has to offer, FoodieBot is here to provide for your needs.</p>
+<p>FoodieBot is an all-in-one application created for NUS students, staff and visitors.
+Designed primarily to help with your everyday campus dining needs, FoodieBot has something to offer
+to everyone. Whether you need a random suggestion of what to eat, directions to get to the canteen, help in planning your budget for the week, or just want to see what each canteen has to offer, FoodieBot is here to provide for your needs.</p>
 </div>
 </div>
 </div>
@@ -58,7 +60,7 @@
 <div class="sect2">
 <h3 id="symbols-and-notations-used"><a class="link" href="#symbols-and-notations-used">2.1. Symbols and Notations Used</a></h3>
 <div class="paragraph">
-<p>The following are symbols and formatting used in this document:</p>
+<p>The following are the symbols and formatting used in this document:</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -85,23 +87,30 @@ This symbol indicates tips for the particular feature.
 </table>
 </div>
 <div class="paragraph">
-<p><code>list</code> - A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p>
+<p><code>list</code> - A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command box and executed by the application.
+The command box location can be seen in the diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui_screenshot_windows.png" alt="Ui screenshot windows" width="850">
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="definition-of-common-words-use"><a class="link" href="#definition-of-common-words-use">2.2. Definition of Common Words Use</a></h3>
+<h3 id="definition-of-common-words-used"><a class="link" href="#definition-of-common-words-used">2.2. Definition of Common Words Used</a></h3>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Context</dt>
 <dd>
-<p>There are some commands that are only permissable at certain state of the application.
+<p>There are some commands that are only permissible at certain states of the application.
 For instance, the <code>review</code> and <code>rate</code> commands are only allowed after navigating to the transactions screen.
-We refer to this state as a <strong>context</strong> , transactions context commands are not allowed in other contexts.
-The requirement of commands to be executed in the relevant context is less particular in the case of canteen and stall as they share similar commands like <code>enter</code> and <code>select</code>.</p>
+We refer to this state as a <strong>context</strong>. Commands which specify a context which they are used in generally cannot work outside of that context.
+However, some commands are less particular about the context which they run in
+such as in the case of the <code>enter</code> command which can run in both the Main, Canteen and Stall contexts.</p>
 </dd>
 <dt class="hdlist1">GUI</dt>
 <dd>
-<p>Graphic User Interface is a type of interface that allows users to interact with.</p>
+<p>Graphic User Interface is a type of visual interface that allows users to interact with.</p>
 </dd>
 <dt class="hdlist1">Index</dt>
 <dd>
@@ -147,11 +156,11 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Some example commands you can try are listed below:
@@ -206,7 +215,8 @@ Some example commands you can try are listed below:
 <div class="sect2">
 <h3 id="back-command-code-strong-back-strong-code"><a class="link" href="#back-command-code-strong-back-strong-code">4.1. Back Command: <code><strong>back</strong></code></a></h3>
 <div class="paragraph">
-<p>Allows you to return to the previous screen if it is available</p>
+<p>If you want to return to your previous screen, just key in <code><strong>back</strong></code> and it&#8217;ll bring you back
+(at least if a previous screen exists).</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>back</code></p>
@@ -215,7 +225,7 @@ Some example commands you can try are listed below:
 <div class="sect2">
 <h3 id="exit-command-code-strong-exit-strong-code"><a class="link" href="#exit-command-code-strong-exit-strong-code">4.2. Exit Command: <code><strong>exit</strong></code></a></h3>
 <div class="paragraph">
-<p>Allows you to exit and close FoodieBot.</p>
+<p>When you&#8217;re done using the application, type <code><strong>exit</strong></code> into the command box to close the application.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>exit</code></p>
@@ -224,7 +234,8 @@ Some example commands you can try are listed below:
 <div class="sect2">
 <h3 id="list-all-canteens-code-strong-list-strong-code"><a class="link" href="#list-all-canteens-code-strong-list-strong-code">4.3. List all Canteens: <code><strong>list</strong></code></a></h3>
 <div class="paragraph">
-<p>Displays a list of available canteens on campus.</p>
+<p>Curious to discover the range of dining options on campus? Simply enter <code><strong>list</strong></code> into the command box
+and FoodieBot will show you all the fabulous canteens on campus for you to browse at your leisure.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>list</code></p>
@@ -235,7 +246,9 @@ Some example commands you can try are listed below:
 <div class="ulist">
 <ul>
 <li>
-<p><code>[f/BLOCK_NAME]</code> - Displays canteens ordered by increasing distance from current location.</p>
+<p><code>[f/BLOCK_NAME]</code> - If you want to view the canteens by their distance from the place specified by
+<code>BLOCK_NAME</code>, this is the tag for you. This will list the canteens in order of increasing distance from
+<code>BLOCK_NAME</code>.</p>
 </li>
 </ul>
 </div>
@@ -246,7 +259,8 @@ Some example commands you can try are listed below:
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-You can also type <code>list</code> into the command box to return to the main page.
+You can also type <code>list</code> into the command box to return to the main page. This is a handy shortcut if
+you ever forget which <strong>Context</strong> you&#8217;re in.
 </td>
 </tr>
 </table>
@@ -279,8 +293,9 @@ You can also type <code>list</code> into the command box to return to the main p
 <div class="sect2">
 <h3 id="go-to-a-canteen-code-strong-goto-strong-code"><a class="link" href="#go-to-a-canteen-code-strong-goto-strong-code">4.4. Go to a Canteen: <code><strong>goto</strong></code></a></h3>
 <div class="paragraph">
-<p>The <code>goto</code> function help you get directions to the canteen you wish to go from your current location which you have indicated.
-It includes a map image to show you how to get to the canteen from the nearest bus stop as well as instructions on how to get there.</p>
+<p>If you&#8217;re ever lost in NUS, worry no more! The <code>goto</code> function can conveniently tell you the directions to the canteen you wish to
+go to from your current location which you have indicated. It even includes a map image to aid you with understanding
+the directions even easier.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -289,7 +304,7 @@ It includes a map image to show you how to get to the canteen from the nearest b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This function is only work on the main page.
+This function will only work on the main page.
 </td>
 </tr>
 </table>
@@ -365,16 +380,12 @@ This function is only work on the main page.
 <ol class="arabic">
 <li>
 <p>Enter the canteen which you want to go to and your current location in this format on the main page <code>goto The Deck f/ com1</code>.</p>
-</li>
-</ol>
-</div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/gotoStep1.PNG" alt="gotoStep1" width="700">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Then press <kbd>Enter</kbd>. This will give you a clear image and instruction on how to get to canteen from the nearest bus stop.</p>
 </li>
@@ -389,10 +400,11 @@ This function is only work on the main page.
 <div class="sect2">
 <h3 id="view-stalls-or-menu-code-strong-enter-strong-code"><a class="link" href="#view-stalls-or-menu-code-strong-enter-strong-code">4.5. View Stalls or Menu: <code><strong>enter</strong></code></a></h3>
 <div class="paragraph">
-<p>The <code>enter</code> key allow you to view the stalls in a canteen and menu of the stall.</p>
+<p>Curious about the details of a particular canteen or stall? The <code>enter</code> command allows you to find out
+all the information you want about the canteen or stall you are interested in.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>enter</code></p>
+<p>Format: <code>enter STALL_NAME/ CANTEEN_NAME/ INDEX</code></p>
 </div>
 <div class="paragraph">
 <p>Parameters:</p>
@@ -400,7 +412,7 @@ This function is only work on the main page.
 <div class="ulist">
 <ul>
 <li>
-<p><code>INDEX</code>: An index that correspond to the canteen that is located beside the canteen name.</p>
+<p><code>INDEX</code>: An index that corresponds to a particular canteen. This index is located beside the canteen name.</p>
 </li>
 <li>
 <p><code>CANTEEN_NAME</code>: The canteen name has to be from one of the canteens displayed. Partial names are not allowed.</p>
@@ -417,8 +429,9 @@ This function is only work on the main page.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Information about the cuisine sold at the stall, the rating of the stall and various other things will be implemented in v2.0.<br>
-The stall&#8217;s rating is determined from the user&#8217;s past experiences of the food items which were selected.
+Information about the types of food sold at the stall, the rating of the stall and various other things will be implemented in v2.0.<br>
+The stall&#8217;s rating is determined from the user&#8217;s past experiences of the food items which were selected (find out
+more in Section 4.13: Rate Food Items).
 </td>
 </tr>
 </table>
@@ -438,7 +451,7 @@ The stall&#8217;s rating is determined from the user&#8217;s past experiences of
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>On the main screen, <code>enter Nus Flavors</code> or <code>enter 1</code> into the command box.</p>
+<p>On the main screen, type <code>enter Nus Flavors</code> or <code>enter 1</code> into the command box.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/enterStep1.PNG" alt="enterStep1" width="700">
@@ -446,8 +459,9 @@ The stall&#8217;s rating is determined from the user&#8217;s past experiences of
 </div>
 </li>
 <li>
-<p>This will display the list of stalls that Nus Flavors have.
-At the bottom of the screen, there will be a display box to pin the current canteen which you enter.</p>
+<p>This will display the list of stalls that Nus Flavors has.
+At the bottom of the screen, there will be a display box which displays the current canteen which you
+have entered.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/enterStep2.PNG" alt="enterStep2" width="700">
@@ -456,20 +470,20 @@ At the bottom of the screen, there will be a display box to pin the current cant
 <div class="ulist">
 <ul>
 <li>
-<p>If you which view stalls in another canteen you can enter <code>back</code> into the command box. This will bring you back to the main page.</p>
+<p>If you wish to view stalls in another canteen you can enter <code>back</code> into the command box. This will bring you back to the main page.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
 <p>If you wish to see the menu of a stall, you can key in <code>enter</code> again.
-Let us see what the Western stall have on their menu. You can key in <code>enter Western</code> or <code>enter 9</code>.
-Don&#8217;t forget to hit the <kbd>enter</kbd> when you are done typing.</p>
+Let us see what the Western stall has on their menu. You can key in <code>enter Western</code> or <code>enter 9</code>.
+Don&#8217;t forget to hit the <kbd>enter</kbd> after you are done typing.</p>
 </li>
 <li>
 <p>This will show you the menu of the Western stall.
-For each item, the name of the food, the cost and the description is given.
-At the bottom or the screen, there will also be a display box to pin the current stall which you enter.</p>
+For each food item, the name, the cost and the description of the food item will be given.
+At the bottom of the screen, there will also be a display box showing the current stall which you have entered.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/enterStall.PNG" alt="enterStall" width="700">
@@ -489,7 +503,9 @@ At the bottom or the screen, there will also be a display box to pin the current
 <div class="sect2">
 <h3 id="select-the-food-code-strong-select-strong-code"><a class="link" href="#select-the-food-code-strong-select-strong-code">4.6. Select the Food : <code><strong>select</strong></code></a></h3>
 <div class="paragraph">
-<p>Saves your selected food into transactions to help you track your history of food consumption.</p>
+<p>Finally decided on a food item after browsing the countless food options at NUS, ordered it and want to record
+down your dining experience? The <code><strong>select</strong></code> function is here allowing you to save your selected food
+into your past transactions to help you track your history of food consumption.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>select</code></p>
@@ -514,8 +530,8 @@ At the bottom or the screen, there will also be a display box to pin the current
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If a budget has been set up, the budget will be automatically
-reduced by the price of the selected food.
+If a budget has been set up, the price of the selected food will be automatically deducted from your
+budget. This helps you keep track of how much money you have spent and how much more you can spend. Nifty, isn&#8217;t it?
 </td>
 </tr>
 </table>
@@ -531,7 +547,7 @@ reduced by the price of the selected food.
 <p>Ensure that you are on the menu screen of the stall. If you do not know how to get to the menu you can refer to the section above or <a href="#View Stalls or Menu">here</a>.</p>
 </li>
 <li>
-<p>Using the example from above on the Western stall.</p>
+<p>Continuing on from the example from the <code><strong>enter</strong></code> command above, we are currently in the Western stall.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/enterStall.PNG" alt="enterStall" width="700">
@@ -542,7 +558,7 @@ reduced by the price of the selected food.
 <p>Enter <code>select Combo Set</code> or <code>selecct 1</code> into the command box.</p>
 </li>
 <li>
-<p>This will display the cost of the item, the remaining amount that you have and the amount you are left to spend for the day.</p>
+<p>This will display the cost of the item, the remaining amount that you have and the amount you are left with to spend for the day.</p>
 </li>
 </ol>
 </div>
@@ -558,7 +574,9 @@ reduced by the price of the selected food.
 <div class="sect2">
 <h3 id="randomize-food-selection-code-strong-randomize-strong-code"><a class="link" href="#randomize-food-selection-code-strong-randomize-strong-code">4.7. Randomize Food Selection : <code><strong>randomize</strong></code></a></h3>
 <div class="paragraph">
-<p><code>randomize</code> helps you to generate a random option when you cannot decide on what to eat.</p>
+<p>Bamboozled by the countless dining options at NUS or simply bored of going to the same boring old canteens to
+eat everyday? <code>randomize</code> is here to help you to generate a random option when you cannot decide on what to eat or
+if you just want to spice up your culinary experience in NUS.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>randomize</code></p>
@@ -582,7 +600,8 @@ reduced by the price of the selected food.
 <dl>
 <dt class="hdlist1">Example</dt>
 <dd>
-<p>On a day where you cannot decide on what to eat but you don&#8217;t mind travelling anywhere on campus.</p>
+<p>On a day where you cannot decide on what to eat but you don&#8217;t mind travelling anywhere on campus, you suddenly
+remember that FoodieBot has a convenient <code>randomize</code> function.</p>
 </dd>
 </dl>
 </div>
@@ -599,8 +618,8 @@ reduced by the price of the selected food.
 </div>
 </li>
 <li>
-<p>This will generate 1 option for you with the detail of the <em>canteen name</em> that this stall belong to, <em>stall name</em>, the <em>stall number</em>
-the <em>price rating</em> as well as the tag if available.</p>
+<p>This will generate 1 option for you with the details of the <em>canteen name</em> that this stall belongs to, the <em>stall name</em>, the <em>stall number</em>
+the <em>price rating</em> and the tag if there are any.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/randomize.PNG" alt="randomize" width="700">
@@ -625,7 +644,7 @@ the <em>price rating</em> as well as the tag if available.</p>
 <dl>
 <dt class="hdlist1">Example</dt>
 <dd>
-<p>What if you want to get a random option base on a canteen (eg. The Deck) that you are at or an option base on what you crave (eg. spicy)?</p>
+<p>What if you want to get a random option only from a particular canteen (eg. The Deck) that you are at or an option based on what you crave (eg. spicy food)?</p>
 </dd>
 </dl>
 </div>
@@ -634,18 +653,19 @@ the <em>price rating</em> as well as the tag if available.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If you want to get a random option base on the canteen (eg. The Deck), you can enter <code>randomize c/ The Deck</code> on the main screen.
-This will display an option that is base on the canteen you want.</p>
+<p>If you want to get a random option based on the canteen (eg. The Deck), you can enter <code>randomize c/ The Deck</code> on the main screen.
+This will display an option that is based on the canteen you want (in this case The Deck).</p>
 </li>
 <li>
-<p>if you want to get a random option based on your craving (eg. rice), you can enter <code>randomize t/ spicy</code> on the main screen.</p>
+<p>If you want to get a random option based on your craving (eg. spicy), you can enter <code>randomize t/ spicy</code> on the main screen.
+This will display a food which has the spicy tag.</p>
 </li>
 <li>
 <p>OR similarly, you can also enter the canteen first before getting a random option.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>In the command box key in <code>enter The deck</code> or <code>enter 2</code> to get the list of stall available in The Deck canteen.</p>
+<p>In the command box key in <code>enter The deck</code> or <code>enter 2</code> to get the list of stalls available in The Deck.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
 <img src="images/wireframe/enterDeck.PNG" alt="enterDeck" width="700">
@@ -678,7 +698,9 @@ Let&#8217;s try getting a food option that has rice from The deck</p>
 <div class="sect2">
 <h3 id="set-a-budget-code-strong-budget-set-strong-code"><a class="link" href="#set-a-budget-code-strong-budget-set-strong-code">4.8. Set a Budget : <code><strong>budget set</strong></code></a></h3>
 <div class="paragraph">
-<p>Set up a daily, weekly or monthly budget. The budget can be changed.</p>
+<p>Have problems keeping track of your spending? The <code>budget set</code> command allows you to set up
+a daily, weekly or monthly budget to help you track how much money you have left to spend. This budget
+can be changed anytime you want but please note the consequences in the box below!</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -781,8 +803,8 @@ Otherwise an error message will be displayed requesting a correct type to be pro
 <div class="sect2">
 <h3 id="view-budget-code-strong-budget-view-strong-code"><a class="link" href="#view-budget-code-strong-budget-view-strong-code">4.9. View Budget: <code><strong>budget view</strong></code></a></h3>
 <div class="paragraph">
-<p>View the current budget and spending that you made during this current budget cycle,
-as well as the remaining budget available to spend.</p>
+<p>Curious about your budget this cycle, how much you have spent and how much you have left? <code>budget view</code> allows
+you to see all your spending as well as the amount of money you have left to spend.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>budget view</code></p>
@@ -796,7 +818,8 @@ as well as the remaining budget available to spend.</p>
 <div class="sect2">
 <h3 id="view-expense-report-code-strong-report-strong-code"><a class="link" href="#view-expense-report-code-strong-report-strong-code">4.10. View Expense Report: <code><strong>report</strong></code></a></h3>
 <div class="paragraph">
-<p>Generates a report of the spending and food purchases for the period specified.</p>
+<p>If you want to see how much you have spent over a period of time, view a beautifully designed report of your
+past expenses with the <code>report</code> command.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>report</code></p>
@@ -874,7 +897,8 @@ of 2019.</p>
 <div class="sect2">
 <h3 id="view-past-transactions-code-strong-transactions-strong-code"><a class="link" href="#view-past-transactions-code-strong-transactions-strong-code">4.11. View Past Transactions: <code><strong>transactions</strong></code></a></h3>
 <div class="paragraph">
-<p>Displays the past transactions of food purchases for any period specified.</p>
+<p>In a similar way to <code>report</code>, <code>transactions</code> also allows you to see all the food you have purchased in
+a particular period.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>transactions</code></p>
@@ -951,7 +975,8 @@ of 2019.</p>
 <div class="sect2">
 <h3 id="review-food-items-code-strong-review-strong-code"><a class="link" href="#review-food-items-code-strong-review-strong-code">4.12. Review Food Items: <code><strong>review</strong></code></a></h3>
 <div class="paragraph">
-<p>Reviews food items from the <strong>transactions</strong> screen.</p>
+<p>From the <strong>transactions</strong> screen, leave a food review for a food item you have consumed to help you jog
+your memory and recall your experiences, be it pleasant or unpleasant, of the previous time you had the food.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>review INDEX REVIEW</code></p>
@@ -987,7 +1012,7 @@ of 2019.</p>
 <p>Ensure that you are on the transaction screen. You can key in <code>transactions</code> on the main screen to get there.</p>
 </li>
 <li>
-<p>Pick a food you wish to review. Lets review the Combo Set that it was delicious and that you like the bbq sauce.<br>
+<p>Pick a food you wish to review. Now perhaps you think that the Combo Set was delicious and that you absolutely adored the bbq sauce.<br>
 Key in <code>review 1 The food is delicious! Love the bbq sauce</code> into the command box, and hit <kbd>enter</kbd>.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
@@ -1013,8 +1038,8 @@ You can update existing reviews by using the same command.
 <div class="sect2">
 <h3 id="rate-food-items-code-strong-rate-strong-code"><a class="link" href="#rate-food-items-code-strong-rate-strong-code">4.13. Rate Food Items: <code><strong>rate</strong></code></a></h3>
 <div class="paragraph">
-<p>Rates food items from the <strong>transactions</strong> screen.
-This rating is on a scale from 0 to 10.</p>
+<p>Lazy to write a full food review? Well from the <code><strong>transactions</strong></code> screen, you can simply leave a food rating
+to show how well you thought of the food you had.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>rate INDEX RATING</code></p>
@@ -1063,8 +1088,9 @@ You can also update existing ratings by using the rate on the same food item.
 <div class="sect2">
 <h3 id="set-food-items-as-favorites-code-strong-favorites-set-strong-code"><a class="link" href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.14. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></h3>
 <div class="paragraph">
-<p>Set your favorite food items from the stalls for easier access.<br>
-Ensure that you are on the <strong>menu screen</strong> of the stall.</p>
+<p>Just had this absolutely delicious meal and want to save it for the next time so you can remember to have it
+again or recommend it others? From the <strong>menu screen</strong> of a stall, you can easily set your favourite food items
+for easier access in the future.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>favorites set INDEX</code></p>
@@ -1083,7 +1109,7 @@ Ensure that you are on the <strong>menu screen</strong> of the stall.</p>
 <div class="sect2">
 <h3 id="view-favorited-food-items-code-strong-favorites-view-strong-code"><a class="link" href="#view-favorited-food-items-code-strong-favorites-view-strong-code">4.15. View Favorited Food Items: <code><strong>favorites view</strong></code></a></h3>
 <div class="paragraph">
-<p>Views the food items that you have set as favorites.</p>
+<p>Once you have saved your favorite food items, you can easily access them with this command.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>favorites view</code></p>
@@ -1095,9 +1121,10 @@ Ensure that you are on the <strong>menu screen</strong> of the stall.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-favorited-food-items-code-strong-favorites-remove-strong-code"><a class="link" href="#remove-favorited-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorited Food Items: <code><strong>favorites remove</strong></code></a></h3>
+<h3 id="remove-favorite-food-items-code-strong-favorites-remove-strong-code"><a class="link" href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></h3>
 <div class="paragraph">
-<p>Views the food items that you have set as favorites.</p>
+<p>Had a change of heart and a particular food has lost your fancy? Don&#8217;t worry because FoodieBot makes it
+painless to severe your ties, by allowing quick removal of that food.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>favorites remove INDEX</code></p>
@@ -1114,12 +1141,14 @@ Ensure that you are on the <strong>menu screen</strong> of the stall.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="filter-canteens-or-stalls-code-strong-filter-strong-code"><a class="link" href="#filter-canteens-or-stalls-code-strong-filter-strong-code">4.17. Filter Canteens or Stalls: <code><strong>filter</strong></code></a></h3>
+<h3 id="filter-canteens-stalls-or-food-code-strong-filter-strong-code"><a class="link" href="#filter-canteens-stalls-or-food-code-strong-filter-strong-code">4.17. Filter Canteens, Stalls or Food: <code><strong>filter</strong></code></a></h3>
 <div class="paragraph">
-<p>Filters canteens or stalls based on the tag or food price entered .</p>
+<p>If you only want a canteen, stall or food with a particular tag, filter allows you to as its name suggests
+filter to show only the things you want. Filter also enables you to filter based on the maximum price you
+are willing to pay</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>filter TAG</code></p>
+<p>Format: <code>filter TAG/ PRICE</code></p>
 </div>
 <div class="paragraph">
 <p>Parameters:</p>
@@ -1127,28 +1156,47 @@ Ensure that you are on the <strong>menu screen</strong> of the stall.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>TAG</code> - a label tag associated with the food item.</p>
+<p><code>TAG</code> - Label tag associated with the canteen or stall depending on which context you are on.</p>
+</li>
+<li>
+<p><code>PRICE</code> - a number which indicates the maximum price of food you are willing to pay for.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can only filter by <em>price</em> from the <strong>menu page</strong> of a stall.<br>
+When filtering by <em>tag</em>, tags varies base on the <strong>current context</strong>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code><strong>filter asian</strong></code></dt>
-<dd>
-<p>Only displays canteens with the asian tag.</p>
-</dd>
-<dt class="hdlist1"><code><strong>filter 5</strong></code></dt>
-<dd>
-<p>Only displays food that are priced at 5 or below.</p>
-</dd>
-</dl>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you wish to filter tags base on what the canteen has, you can enter
+<code><strong>filter asian</strong></code> on the main screen. This will displays canteens with the asian tag.</p>
+</li>
+<li>
+<p>After entering a canteen, you can also filter the stalls base on tags as well.</p>
+</li>
+<li>
+<p>If you have decided on the stall you wish to eat from, but then have a limit on how much you can spend ($4).
+You can <code>filter 4</code> on the menu page. This will display all the options available that are within your budget.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1261,4 +1309,4 @@ Ensure that you are on the <strong>menu screen</strong> of the stall.</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-05 10:56:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-05 15:39:01 UTC</div></div></div></body></html>

@@ -92,7 +92,7 @@ The command box location can be seen in the diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui_screenshot_windows.png" alt="Ui screenshot windows" width="850">
+<img src="images/Ui_screenshot_windows.PNG" alt="Ui screenshot windows" width="850">
 </div>
 </div>
 </div>
@@ -146,7 +146,7 @@ An index is limited to the maximum number of items shown in the list, the item d
 <p>Double-click the file to start the app. The Graphical User Interface(GUI) similar to the image shown below should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui_screenshot_windows.png" alt="Ui screenshot windows" width="850">
+<img src="images/Ui_screenshot_windows.PNG" alt="Ui screenshot windows" width="850">
 </div>
 </div>
 </li>
@@ -286,7 +286,7 @@ you ever forget which <strong>Context</strong> you&#8217;re in.
 </div>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/app/list1.png" alt="list1" width="700">
+<img src="images/app/list1.PNG" alt="list1" width="700">
 </div>
 </div>
 </div>
@@ -555,7 +555,7 @@ budget. This helps you keep track of how much money you have spent and how much 
 </div>
 </li>
 <li>
-<p>Enter <code>select Combo Set</code> or <code>selecct 1</code> into the command box.</p>
+<p>Enter <code>select Combo Set</code> or <code>select 1</code> into the command box.</p>
 </li>
 <li>
 <p>This will display the cost of the item, the remaining amount that you have and the amount you are left with to spend for the day.</p>
@@ -618,11 +618,11 @@ remember that FoodieBot has a convenient <code>randomize</code> function.</p>
 </div>
 </li>
 <li>
-<p>This will generate 1 option for you with the details of the <em>canteen name</em> that this stall belongs to, the <em>stall name</em>, the <em>stall number</em>
+<p>This will generate 1 option for you with the details of the <em>canteen name</em> that this stall belongs to, the <em>stall name</em>, the <em>stall number</em>,
 the <em>price rating</em> and the tag if there are any.</p>
 <div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/wireframe/randomize.PNG" alt="randomize" width="700">
+<img src="images/wireframe/randomize.png" alt="randomize" width="700">
 </div>
 </div>
 <div class="ulist">
@@ -829,13 +829,16 @@ past expenses with the <code>report</code> command.</p>
 </td>
 <td class="content">
 This command has several variations to choose from! Also, the date can be delimited with '-', '.' or '/',
-as long as your date format follows a generic D/M/YY format (e.g. 11/4/20, 3-6-2019)!
+as long as your date format follows a generic DD/M/YY or D-M-YYYY format (e.g. 11/4/20, 3-6-2019)!<br>
+D - day<br>
+M - month<br>
+Y - year<br>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Formats:</p>
+<p>Format:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -929,7 +932,7 @@ of 2019.</p>
 <div class="sect2">
 <h3 id="view-past-transactions-code-strong-transactions-strong-code"><a class="link" href="#view-past-transactions-code-strong-transactions-strong-code">4.11. View Past Transactions: <code><strong>transactions</strong></code></a></h3>
 <div class="paragraph">
-<p>In a similar way to <code>report</code>, <code>transactions</code> also allows you to see all the food you have purchased in
+<p>In a similar way to <code>report</code>, <code>transactions</code> also allow you to see all the food you have purchased in
 a particular period.</p>
 </div>
 <div class="admonitionblock note">
@@ -940,13 +943,16 @@ a particular period.</p>
 </td>
 <td class="content">
 This command has several variations to choose from! Also, the date can be delimited with '-', '.' or '/',
-as long as your date format follows a generic D/M/YY format (e.g. 11/4/20, 3-6-2019)!
+as long as your date format follows a generic DD/M/YY or D-M-YYYY format (e.g. 11/4/20, 3-6-2019)!<br>
+D - day<br>
+M - month<br>
+Y - year<br>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Formats:</p>
+<p>Format:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1054,7 +1060,7 @@ your memory and recall your experiences, be it pleasant or unpleasant, of the pr
 <p><code>INDEX</code> - This must be the first parameter and an index from the list has to be specified.</p>
 </li>
 <li>
-<p><code>REVIEW</code>- This must be the second parameter and the review message cannot be blank.</p>
+<p><code>REVIEW</code> - This must be the second parameter and the review message cannot be blank.</p>
 </li>
 </ul>
 </div>
@@ -1117,7 +1123,7 @@ to show how well you thought of the food you had.</p>
 <p><code>INDEX</code> - This must be the first parameter and an index from the list has to be specified.</p>
 </li>
 <li>
-<p><code>RATING</code>- This must be the second parameter and requires a rating for the food item.</p>
+<p><code>RATING</code> - This must be the second parameter and requires a rating for the food item.</p>
 </li>
 </ul>
 </div>
@@ -1153,7 +1159,7 @@ You can also update existing ratings by using the rate on the same food item.
 <h3 id="set-food-items-as-favorites-code-strong-favorites-set-strong-code"><a class="link" href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.14. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></h3>
 <div class="paragraph">
 <p>Just had this absolutely delicious meal and want to save it for the next time so you can remember to have it
-again or recommend it others? From the <strong>menu screen</strong> of a stall, you can easily set your favourite food items
+again or recommend it to others? From the <strong>menu screen</strong> of a stall, you can easily set your favourite food items
 for easier access in the future.</p>
 </div>
 <div class="paragraph">
@@ -1188,7 +1194,7 @@ for easier access in the future.</p>
 <h3 id="remove-favorite-food-items-code-strong-favorites-remove-strong-code"><a class="link" href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></h3>
 <div class="paragraph">
 <p>Had a change of heart and a particular food has lost your fancy? Don&#8217;t worry because FoodieBot makes it
-painless to severe your ties, by allowing quick removal of that food.</p>
+painless to sever your ties, by allowing quick removal of that food.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>favorites remove INDEX</code></p>
@@ -1220,7 +1226,7 @@ are willing to pay</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>TAG</code> - Label tag associated with the canteen or stall depending on which context you are on.</p>
+<p><code>TAG</code> - Label tag associated with the canteen or stall depending on which context you are in.</p>
 </li>
 <li>
 <p><code>PRICE</code> - a number which indicates the maximum price of food you are willing to pay for.</p>
@@ -1235,7 +1241,7 @@ are willing to pay</p>
 </td>
 <td class="content">
 You can only filter by <em>price</em> from the <strong>menu page</strong> of a stall.<br>
-When filtering by <em>tag</em>, tags varies base on the <strong>current context</strong>.
+When filtering by <em>tag</em>, tags vary based on the <strong>current context</strong>.
 </td>
 </tr>
 </table>
@@ -1250,11 +1256,11 @@ When filtering by <em>tag</em>, tags varies base on the <strong>current context<
 <div class="ulist">
 <ul>
 <li>
-<p>If you wish to filter tags base on what the canteen has, you can enter
-<code><strong>filter asian</strong></code> on the main screen. This will displays canteens with the asian tag.</p>
+<p>If you wish to filter tags based on what the canteen has, you can enter
+<code><strong>filter asian</strong></code> on the main screen. This will display canteens with the asian tag.</p>
 </li>
 <li>
-<p>After entering a canteen, you can also filter the stalls base on tags as well.</p>
+<p>After entering a canteen, you can also filter the stalls based on tags as well.</p>
 </li>
 <li>
 <p>If you have decided on the stall you wish to eat from, but then have a limit on how much you can spend ($4).
@@ -1365,12 +1371,7 @@ You can <code>filter 4</code> on the menu page. This will display all the option
 <td class="tableblock halign-left valign-top"><p class="tableblock">Generates the transaction breakdown</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">transaction w/ 12-02-2020</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">filter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Show only canteens or stalls with a specified tag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">filter asian</p></td>
-</tr>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-06 15:42:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-06 17:52:10 UTC</div></div></div></body></html>

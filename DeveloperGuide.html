@@ -498,7 +498,7 @@ For example, if ListCommand has the nearest block name passed through as a param
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Uses only a prefix to get the intended functionality with list.</p>
 </li>
 <li>
 <p>Cons: <code>f/</code> is an optional prefix, user might forget that it exists as no error is shown in the command result box</p>
@@ -511,10 +511,11 @@ For example, if ListCommand has the nearest block name passed through as a param
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: The user finds it natural to type the word find.</p>
+<p>Pros: It is not required to remember any prefix.</p>
 </li>
 <li>
-<p>Cons: Can be confusing whether find shows the list of canteens, food, or location of the canteen on campus. Having the 'find' command is also one additional command for the user to remember.</p>
+<p>Cons: Can be confusing whether find shows the list of canteens, food, or location of the canteen on campus.
+Find has to be followed by nearest otherwise it does not come natural to sort by distance.</p>
 </li>
 </ul>
 </div>
@@ -567,18 +568,18 @@ This process returns a new <code>BudgetCommand</code> object.</p>
 <div class="sect3">
 <h4 id="budget-design-considerations"><a class="link" href="#budget-design-considerations">5.2.2. Budget Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect"><a class="link" href="#aspect">Aspect:</a></h5>
+<h5 id="aspect-code-budget-view-code-shows-the-transactions-screen"><a class="link" href="#aspect-code-budget-view-code-shows-the-transactions-screen">Aspect: <code>Budget view</code> shows the transactions screen</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>Budget view</code> displays the current budget in the command feedback panel.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Budget can be viewed anywhere in FoodieBot.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: -</p>
 </li>
 </ul>
 </div>
@@ -588,10 +589,11 @@ This process returns a new <code>BudgetCommand</code> object.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Can set a realistic budget after looking at past spendings.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Increased the coupling of budget and transactions but the intended functionality is different. The user may not want to type
+budget to rate a food item.</p>
 </li>
 </ul>
 </div>
@@ -646,31 +648,31 @@ This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <
 <div class="sect3">
 <h4 id="enter-design-considerations"><a class="link" href="#enter-design-considerations">5.3.2. Enter Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-2"><a class="link" href="#aspect-2">Aspect:</a></h5>
+<h5 id="aspect-select-command-to-be-used-instead-of-enter"><a class="link" href="#aspect-select-command-to-be-used-instead-of-enter">Aspect: Select command to be used instead of Enter</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>enter</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: <code>enter</code> only handles the viewing of canteens and stalls.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Might accidentally type <code>select</code> as the <code>select</code> command is also implemented in FoodieBot.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> <code>select</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: one command to select canteens, stalls and food items.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Additional checks for <code>select</code> command to detect if a food is chosen, so that it gets add into transactions.</p>
 </li>
 </ul>
 </div>
@@ -727,31 +729,32 @@ to the <code>LogicManager</code>.</p>
 <div class="sect3">
 <h4 id="favorites-design-considerations"><a class="link" href="#favorites-design-considerations">5.4.2. Favorites Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-3"><a class="link" href="#aspect-3">Aspect:</a></h5>
+<h5 id="aspect-code-favorites-set-code-operates-on-stalls-and-food-items"><a class="link" href="#aspect-code-favorites-set-code-operates-on-stalls-and-food-items">Aspect: <code>favorites set</code> operates on stalls and food items</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>favorites set</code> operate only for food items</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Only need to maintain one list of food items.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Does not allow stall to be added to favorites, the randomize feature cannot take into account of users' stall preferences.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> <code>favorites set</code> operate for both stalls and food items</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Can favorite a single stall rather than adding all the food items in the stall.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Cannot identify which food in particular the user likes from the stall. For instance, the user might not like spicy
+food and the stall sells a food item with that food characteristic.</p>
 </li>
 </ul>
 </div>
@@ -804,31 +807,32 @@ This process returns a new <code>FilterCommand</code> object.</p>
 <div class="sect3">
 <h4 id="filter-design-considerations"><a class="link" href="#filter-design-considerations">5.5.2. Filter Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-4"><a class="link" href="#aspect-4">Aspect:</a></h5>
+<h5 id="aspect-code-filter-code-allow-partial-name-tag-filters"><a class="link" href="#aspect-code-filter-code-allow-partial-name-tag-filters">Aspect: <code>filter</code> allow partial name tag filters</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>filter</code> is using strict match case.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Can be accurate in the filter, for example, typing <code>filter ex</code> with not
+return both food that are expensive and or considered as extras in a combo set</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: -</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> <code>filter</code> allow partial name tag search.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: More lenient in tag search</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Long list of filter results</p>
 </li>
 </ul>
 </div>
@@ -876,31 +880,51 @@ to the <code>LogicManager</code>.</p>
 <div class="sect3">
 <h4 id="goto-design-considerations"><a class="link" href="#goto-design-considerations">5.6.2. Goto Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-5"><a class="link" href="#aspect-5">Aspect:</a></h5>
+<h5 id="aspect-command-format"><a class="link" href="#aspect-command-format">Aspect: Command format</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>goto CANTEEN_INDEX f/CURRENT_LOCATION</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Displays the directional instructions only for the current location to the canteen.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: If no directions are found for the current location to canteen, the user has to try another location by changing
+it in the command box.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> <code>directions</code> shows directions categorised by blocks. For example,</p>
+<div class="literalblock">
+<div class="content">
+<pre>//example snippet
+Com1
+1. To Nus Flavors:
+...
+2. To The Deck:
+...
+.
+Utown
+3. To Nus Flavors:
+...
+4. To The Deck:
+...
+.
+//end of example</pre>
+</div>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: It is not required to enter any prefix or remember any block name.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Display a list of possible directional instructions of current locations to the canteen.
+One has to scroll down the list to find the correct list item to show the directions.</p>
 </li>
 </ul>
 </div>
@@ -960,31 +984,31 @@ In this case a <code>RandomizeCommand</code> object is created and returned to t
 <div class="sect3">
 <h4 id="randomize-design-considerations"><a class="link" href="#randomize-design-considerations">5.7.2. Randomize Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-context-where-code-randomize-code-can-be-called-from"><a class="link" href="#aspect-context-where-code-randomize-code-can-be-called-from">Aspect: Context where <code>randomize</code> can be called from</a></h5>
+<h5 id="aspect-context-where-code-randomize-c-code-can-be-called-from"><a class="link" href="#aspect-context-where-code-randomize-c-code-can-be-called-from">Aspect: Context where <code>randomize c/</code> can be called from</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> <code>randomize</code> function is only called from the canteen context.</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>randomize c/</code> function is only called from the canteen context.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Only allow canteen index or name shown in the displayed list to be entered with the prefix.</p>
 </li>
 <li>
-<p>Cons: Prefix are necessary to indicate if randomize is to be within one canteen only.</p>
+<p>Cons: Prefix is necessary to indicate that randomize works with one canteen only.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> <code>randomize</code> can be called after entering a canteen and/or stall.</p>
+<p><strong>Alternative 2 :</strong> <code>randomize c/</code> can be called anywhere within FoodieBot.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Reduce user inputs.</p>
+<p>Pros: -</p>
 </li>
 <li>
-<p>Cons: Additional method will be needed to store the knowledge of the current canteen and/or stall entered.</p>
+<p>Cons: The index might not be bound to the canteen when index is used.</p>
 </li>
 </ul>
 </div>
@@ -1033,31 +1057,18 @@ update the rating of the food.</p>
 <div class="sect3">
 <h4 id="rate-design-considerations"><a class="link" href="#rate-design-considerations">5.8.2. Rate Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-6"><a class="link" href="#aspect-6">Aspect:</a></h5>
+<h5 id="aspect-rate-command-allows-0"><a class="link" href="#aspect-rate-command-allows-0">Aspect: Rate command allows 0</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Current choice:</strong> Rating starts from 1.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Does not cause confusion whether a rating of 0 means food item is not rated.</p>
 </li>
 <li>
-<p>Cons:</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-</li>
-<li>
-<p>Cons:</p>
+<p>Cons: Cannot remove a rating by setting it to 0.</p>
 </li>
 </ul>
 </div>
@@ -1106,31 +1117,32 @@ update the review of the food.</p>
 <div class="sect3">
 <h4 id="review-design-considerations"><a class="link" href="#review-design-considerations">5.9.2. Review Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-7"><a class="link" href="#aspect-7">Aspect:</a></h5>
+<h5 id="aspect-code-review-code-uses-a-separate-screen"><a class="link" href="#aspect-code-review-code-uses-a-separate-screen">Aspect: <code>review</code> uses a separate screen</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>review 1 this is a message</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Able to update a review message conveniently</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Review message may be too long which may not fit within the ui card</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> <code>review INDEX</code>. FoodieBot shows review edit screen to type message.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Remove the need to do any checking on prefixes</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: A valid command can be entered but not recognised. The user has to accept the change to navigate away.
+If the back command is accepted, the user can&#8217;t enter the single word <code>back</code> as the review message.</p>
 </li>
 </ul>
 </div>
@@ -1178,33 +1190,34 @@ This Process returns a <code>ReportCommand</code> object to the <code>LogicManag
 </div>
 </div>
 <div class="sect3">
-<h4 id="review-design-considerations-2"><a class="link" href="#review-design-considerations-2">5.10.2. Review Design Considerations</a></h4>
+<h4 id="report-design-considerations"><a class="link" href="#report-design-considerations">5.10.2. Report Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-8"><a class="link" href="#aspect-8">Aspect:</a></h5>
+<h5 id="aspect-functionality-aspect-of-report"><a class="link" href="#aspect-functionality-aspect-of-report">Aspect: Functionality aspect of report</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>report</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Shows a generated report when the command is entered.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: -</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> <code>report</code> command to be combined with <code>transactions</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: A report can be generated right from transactions which means
+one less command to manage.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: It is still required to  type <code>report</code> after <code>transactions</code> command is entered.</p>
 </li>
 </ul>
 </div>
@@ -1255,31 +1268,18 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <div class="sect3">
 <h4 id="select-design-considerations"><a class="link" href="#select-design-considerations">5.11.2. Select Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-9"><a class="link" href="#aspect-9">Aspect:</a></h5>
+<h5 id="aspect-how-food-items-are-selected"><a class="link" href="#aspect-how-food-items-are-selected">Aspect: How food items are selected</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Current Choice:</strong> Selects the food item with <code>select INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: clean, easy to understand command syntax</p>
 </li>
 <li>
-<p>Cons:</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-</li>
-<li>
-<p>Cons:</p>
+<p>Cons: may be confused and used interchangeably with <code>enter</code></p>
 </li>
 </ul>
 </div>
@@ -1292,7 +1292,7 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <div class="sect2">
 <h3 id="transactions-command"><a class="link" href="#transactions-command">5.12. Transactions Command</a></h3>
 <div class="paragraph">
-<p>The <code>transaction</code> command is implemented  by the <code>TransactionsCommand</code> class.</p>
+<p>The <code>transactions</code> command is implemented  by the <code>TransactionsCommand</code> class.</p>
 </div>
 <div class="paragraph">
 <p>This command is accessed by the <code>LogicManager#execute()</code> to display the transaction of the given period if stated.</p>
@@ -1329,31 +1329,31 @@ This Process returns a <code>TransactionsCommand</code> object to the <code>Logi
 <div class="sect3">
 <h4 id="transactions-design-considerations"><a class="link" href="#transactions-design-considerations">5.12.2. Transactions Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-10"><a class="link" href="#aspect-10">Aspect:</a></h5>
+<h5 id="aspect-code-transactions-code-should-be-included-as-a-feature"><a class="link" href="#aspect-code-transactions-code-should-be-included-as-a-feature">Aspect: <code>transactions</code> should be included as a feature</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> `</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>transactions</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: There is no need to worry about prefixes.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: To review or rate a food item, it has to always start with the transactions command.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong></p>
+<p><strong>Alternative 2:</strong> The food item is reviewed after selecting the canteen and/or stall without having <code>transactions</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
+<p>Pros: Convenience in being able interact with the screen using multiple commands.</p>
 </li>
 <li>
-<p>Cons:</p>
+<p>Cons: Ui may look cluttered. Increases difficulty to test.</p>
 </li>
 </ul>
 </div>
@@ -1947,4 +1947,4 @@ The user is not particularly limited to student and staff, it can be anyone who 
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-06 11:30:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-06 15:07:03 UTC</div></div></div></body></html>

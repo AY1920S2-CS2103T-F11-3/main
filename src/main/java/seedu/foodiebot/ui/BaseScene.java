@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -23,21 +24,27 @@ import seedu.foodiebot.commons.core.LogsCenter;
 import seedu.foodiebot.logic.Logic;
 
 import seedu.foodiebot.logic.commands.ActionCommandResult;
+import seedu.foodiebot.logic.commands.BackCommand;
 import seedu.foodiebot.logic.commands.BudgetCommand;
 import seedu.foodiebot.logic.commands.CommandResult;
 import seedu.foodiebot.logic.commands.DirectionsCommandResult;
 import seedu.foodiebot.logic.commands.EnterCanteenCommand;
-import seedu.foodiebot.logic.commands.ExitCommand;
 import seedu.foodiebot.logic.commands.FavoritesCommand;
+import seedu.foodiebot.logic.commands.GoToCanteenCommand;
 import seedu.foodiebot.logic.commands.ListCommand;
 import seedu.foodiebot.logic.commands.RandomizeCommand;
 import seedu.foodiebot.logic.commands.RateCommand;
 import seedu.foodiebot.logic.commands.ReportCommand;
 import seedu.foodiebot.logic.commands.ReviewCommand;
+import seedu.foodiebot.logic.commands.SelectItemCommand;
 import seedu.foodiebot.logic.commands.TransactionsCommand;
 import seedu.foodiebot.logic.commands.exceptions.CommandException;
 import seedu.foodiebot.logic.parser.ParserContext;
 import seedu.foodiebot.logic.parser.exceptions.ParseException;
+import seedu.foodiebot.model.Model;
+import seedu.foodiebot.model.budget.Budget;
+import seedu.foodiebot.model.canteen.Canteen;
+import seedu.foodiebot.model.canteen.Stall;
 
 /**
  * Base class for creating a javafx scene.
@@ -48,6 +55,7 @@ public class BaseScene {
     protected MenuItem helpMenuItem;
 
     protected Logic logic;
+    protected Model model;
     protected Stage primaryStage;
     // Independent Ui parts residing in this Ui container
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -57,11 +65,23 @@ public class BaseScene {
     private StackPane commandBoxPlaceholder;
     @FXML
     private StackPane listPanelPlaceholder;
-    @FXML
-    private StackPane extraListPanelPlaceholder;
+
     private ResultDisplay resultDisplay;
     @FXML
     private StackPane resultDisplayPlaceholder;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private VBox stallList;
+
+    @FXML
+    private Label topLabel;
+
+    @FXML
+    private Label bottomLabel;
+
+    @FXML
+    private ProgressBar budgetTracker;
 
     private HelpWindow helpWindow;
 
@@ -72,7 +92,7 @@ public class BaseScene {
         this.logic = logic;
         fillInnerParts();
         helpWindow = new HelpWindow();
-
+        showPinnedItem(false);
     }
 
     private static URL getFxmlFileUrl(String fxmlFileName) {
@@ -94,7 +114,7 @@ public class BaseScene {
      * @param regionUiPart
      */
     void addToExtraListPanel(UiPart<Region> regionUiPart) {
-        extraListPanelPlaceholder = (StackPane) primaryStage.getScene().lookup(
+        StackPane extraListPanelPlaceholder = (StackPane) primaryStage.getScene().lookup(
             "#extraListPanelPlaceholder");
         extraListPanelPlaceholder.getChildren().clear();
         extraListPanelPlaceholder.getChildren().add(regionUiPart.getRoot());
@@ -113,6 +133,9 @@ public class BaseScene {
         statusbarPlaceholder = (StackPane) primaryStage.getScene().lookup("#statusbarPlaceholder");
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
         commandBox.getCommandTextField().requestFocus();
+
+        vbox = (VBox) primaryStage.getScene().lookup("#vbox");
+        stallList = (VBox) primaryStage.getScene().lookup("#stallList");
     }
 
     void updateStatusFooter(String message) {
@@ -142,6 +165,24 @@ public class BaseScene {
         }
     }
 
+    /**
+     * .
+     * @param result
+     * @param budget
+     */
+    void updateResultDisplayBudget(String result, Budget budget) {
+        resultDisplayPlaceholder = (StackPane) primaryStage.getScene().lookup("#resultDisplayPlaceholder");
+        resultDisplay = new ResultDisplay();
+        if (!result.isEmpty()) {
+            getResultDisplay().setFeedbackToUser(result, budget);
+            resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        }
+    }
+
+    /**
+     * /
+     * @param result
+     */
     void updateResultDisplayContextAware(String result) {
         if (!ParserContext.getCurrentContext().equals(ParserContext.DIRECTIONS_CONTEXT)) {
             updateResultDisplay(result);
@@ -151,9 +192,20 @@ public class BaseScene {
     /** Fills the stallListPanelRegion */
     @FXML
     public void handleListStalls() {
+        Canteen cureentCanteen = ParserContext.getCurrentCanteen().get();
+
+        showPinnedItem(false);
+        VBox stallList = (VBox) loadFxmlFile("PinnedItem.fxml");
+
+        topLabel = (Label) primaryStage.getScene().lookup("#topLabel");
+        topLabel.setText("List of Stalls in " + cureentCanteen.getName());
+
+        vbox.getChildren().add(vbox.getChildren().size() - 1, stallList);
         addToListPanel(new StallsListPanel(logic.getFilteredStallList(true)));
         addToExtraListPanel(new CanteenListPanel(FXCollections.observableArrayList(
             ParserContext.getCurrentCanteen().get()), false));
+
+        bottomLabel = (Label) primaryStage.getScene().lookup("#bottomLabel");
     }
 
     /**
@@ -161,6 +213,13 @@ public class BaseScene {
      */
     @FXML
     public void handleListFood() {
+        Stall currentStall = ParserContext.getCurrentStall().get();
+        topLabel.setText("List of Foods in " + currentStall.getName());
+        if (!ParserContext.getPreviousContext().equals("RANDOMIZE")) {
+            bottomLabel = (Label) primaryStage.getScene().lookup("#bottomLabel");
+            bottomLabel.setText("Current Stall");
+        }
+
         addToListPanel(new FoodListPanel(logic.getFilteredFoodList(true)));
         addToExtraListPanel(new StallsListPanel(FXCollections.observableArrayList(
             ParserContext.getCurrentStall().get())));
@@ -173,11 +232,15 @@ public class BaseScene {
     public void handleListFavorites() {
         changeScene("MainScene.fxml");
         new BaseScene(primaryStage, logic);
-        extraListPanelPlaceholder = (StackPane) primaryStage.getScene().lookup(
+        StackPane extraListPanelPlaceholder = (StackPane) primaryStage.getScene().lookup(
             "#extraListPanelPlaceholder");
         if (extraListPanelPlaceholder != null) {
             extraListPanelPlaceholder.getChildren().clear();
         }
+
+        topLabel = (Label) primaryStage.getScene().lookup("#topLabel");
+        topLabel.setText("List of Favorites");
+
         addToListPanel(new FoodListPanel(logic.getFilteredFavoriteFoodList(false)));
 
     }
@@ -189,21 +252,23 @@ public class BaseScene {
     public void handleListCanteens(CommandResult commandResult) {
         changeScene("MainScene.fxml");
         new MainScene(primaryStage, logic);
+
+        topLabel = (Label) primaryStage.getScene().lookup("#topLabel");
+        topLabel.setText("List of Canteens in NUS");
+
         addToListPanel(new CanteenListPanel(
             commandResult.isLocationSpecified()
                 ? logic.getFilteredCanteenListSortedByDistance()
                 : logic.getFilteredCanteenList(), commandResult.isLocationSpecified()));
+        showPinnedItem(false);
     }
-
-    /**
-     * .
-     */
-    @FXML
-    public void handleListCanteens() {
-        changeScene("MainScene.fxml");
-        new MainScene(primaryStage, logic);
-        addToListPanel(new CanteenListPanel(
-            logic.getFilteredCanteenList(), false));
+    /** .*/
+    void showPinnedItem(boolean value) {
+        if (!value) {
+            if (vbox != null) {
+                vbox.getChildren().remove(stallList);
+            }
+        }
     }
 
     /**
@@ -213,8 +278,8 @@ public class BaseScene {
     public void handleListTransactions() {
         // changeScene("MainScene.fxml");
         // new MainScene(primaryStage, logic);
+        topLabel.setText("List of Transactions");
         addToListPanel(new TransactionsPanel(logic.getFilteredTransactionsList()));
-
     }
 
     /** Fills the randomize panel. */
@@ -222,6 +287,8 @@ public class BaseScene {
     public void handleListRandomize() {
         changeScene("MainScene.fxml");
         new BaseScene(primaryStage, logic);
+        topLabel = (Label) primaryStage.getScene().lookup("#topLabel");
+        topLabel.setText("Randomize Option: ");
         addToListPanel(new RandomizeListPanel(logic.getFilteredRandomizeList()));
     }
 
@@ -231,33 +298,31 @@ public class BaseScene {
     protected CommandResult executeCommand(String commandText)
         throws CommandException, ParseException, IOException {
         CommandResult commandResult = null;
+        topLabel = (Label) primaryStage.getScene().lookup("#topLabel");
         try {
             commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-
-            if (commandResult instanceof DirectionsCommandResult) {
-                //new DirectionsWindowScene(getPrimaryStage(), logic, (DirectionsCommandResult) commandResult).show();
-
-                VBox pane = (VBox) loadFxmlFile("NoResultDisplayScene.fxml");
-                /* This is a negative example to load ui
-                Scene scene = new Scene(pane); // optionally specify dimensions too
-                getPrimaryStage().setScene(scene);
-                */
-                ParserContext.setCurrentContext(ParserContext.DIRECTIONS_CONTEXT);
-                primaryStage.getScene().setRoot(pane);
-                new DirectionsScene(primaryStage, logic, (DirectionsCommandResult) commandResult);
-            }
-
             switch (commandResult.commandName) {
             case ListCommand.COMMAND_WORD:
-                if (ParserContext.getCurrentContext().equals(ParserContext.MAIN_CONTEXT)) {
-                    handleListCanteens(commandResult);
-                    updateResultDisplay(commandResult.getFeedbackToUser());
-                } else if (ParserContext.getCurrentContext().equals(ParserContext.DIRECTIONS_CONTEXT)) {
-                    handleListCanteens(commandResult);
-                    ParserContext.setCurrentContext(ParserContext.MAIN_CONTEXT);
-                } else {
-                    updateResultDisplay(ParserContext.INVALID_CONTEXT_MESSAGE);
+                handleListCanteens(commandResult);
+                ParserContext.setCurrentContext(ParserContext.MAIN_CONTEXT);
+                updateResultDisplay(commandResult.getFeedbackToUser());
+                break;
+            case GoToCanteenCommand
+                    .COMMAND_WORD:
+                if (commandResult instanceof DirectionsCommandResult && ParserContext.getCurrentContext()
+                    .equals(ParserContext.MAIN_CONTEXT)) {
+                    //new DirectionsWindowScene(getPrimaryStage(), logic, (DirectionsCommandResult) commandResult)
+                    // .show();
+
+                    VBox pane = (VBox) loadFxmlFile("NoResultDisplayScene.fxml");
+                    /* This is a negative example to load ui
+                    Scene scene = new Scene(pane); // optionally specify dimensions too
+                    getPrimaryStage().setScene(scene);
+                    */
+                    ParserContext.setCurrentContext(ParserContext.DIRECTIONS_CONTEXT);
+                    primaryStage.getScene().setRoot(pane);
+                    new DirectionsScene(primaryStage, logic, (DirectionsCommandResult) commandResult);
                 }
                 break;
             case EnterCanteenCommand.COMMAND_WORD:
@@ -297,6 +362,7 @@ public class BaseScene {
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case ReportCommand.COMMAND_WORD:
+                changeScene("MainScene.fxml");
                 // VBox pane = (VBox) loadFxmlFile("NoResultDisplayScene.fxml");
                 // primaryStage.getScene().setRoot(pane);
                 new ReportScene(primaryStage, logic);
@@ -304,7 +370,7 @@ public class BaseScene {
                 break;
             case BudgetCommand.COMMAND_WORD:
                 handleListTransactions();
-                updateResultDisplay(commandResult.getFeedbackToUser());
+                updateResultDisplayBudget(commandResult.getFeedbackToUser(), logic.getFoodieBot().getBudget());
                 break;
             case RateCommand.COMMAND_WORD:
                 handleListTransactions();
@@ -318,7 +384,11 @@ public class BaseScene {
                 handleListRandomize();
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
-            case ExitCommand.COMMAND_WORD:
+            case SelectItemCommand.COMMAND_WORD:
+                updateResultDisplayBudget(commandResult.getFeedbackToUser(), logic.getFoodieBot().getBudget());
+                break;
+            case BackCommand.COMMAND_WORD:
+                topLabel.setText("");
                 switch (ParserContext.getCurrentContext()) {
                 case ParserContext.MAIN_CONTEXT:
                     handleListCanteens(commandResult);
@@ -329,6 +399,9 @@ public class BaseScene {
                 case ParserContext.RANDOMIZE_CONTEXT:
                     handleListRandomize();
                     break;
+                case ParserContext.DIRECTIONS_CONTEXT:
+                    handleListCanteens(commandResult);
+                    break;
                 case ParserContext.FAVORITE_CONTEXT:
                     switch (ParserContext.getPreviousContext()) {
                     case ParserContext.STALL_CONTEXT:
@@ -336,7 +409,7 @@ public class BaseScene {
                         ParserContext.setCurrentContext(ParserContext.CANTEEN_CONTEXT);
                         break;
                     default:
-                        handleListCanteens();
+                        handleListCanteens(commandResult);
                         ParserContext.setCurrentContext(ParserContext.MAIN_CONTEXT);
                         break;
                     }

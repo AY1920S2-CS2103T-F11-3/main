@@ -165,6 +165,11 @@ public class BaseScene {
         }
     }
 
+    /**
+     * .
+     * @param result
+     * @param budget
+     */
     void updateResultDisplayBudget(String result, Budget budget) {
         resultDisplayPlaceholder = (StackPane) primaryStage.getScene().lookup("#resultDisplayPlaceholder");
         resultDisplay = new ResultDisplay();
@@ -174,6 +179,10 @@ public class BaseScene {
         }
     }
 
+    /**
+     * /
+     * @param result
+     */
     void updateResultDisplayContextAware(String result) {
         if (!ParserContext.getCurrentContext().equals(ParserContext.DIRECTIONS_CONTEXT)) {
             updateResultDisplay(result);
@@ -376,7 +385,7 @@ public class BaseScene {
                 updateResultDisplay(commandResult.getFeedbackToUser());
                 break;
             case SelectItemCommand.COMMAND_WORD:
-                    updateResultDisplayBudget(commandResult.getFeedbackToUser(), logic.getFoodieBot().getBudget());
+                updateResultDisplayBudget(commandResult.getFeedbackToUser(), logic.getFoodieBot().getBudget());
                 break;
             case BackCommand.COMMAND_WORD:
                 topLabel.setText("");

@@ -40,7 +40,7 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser, Budget budget) {
         requireNonNull(feedbackToUser);
         budgetLabel.setVisible(true);
-        float progress = budget.getRemainingBudget()/ budget.getTotalBudget();
+        float progress = budget.getRemainingBudget() / budget.getTotalBudget();
         if (progress < 0.25) {
             budgetTrackerLow.setProgress(progress);
             budgetTrackerHigh.setProgress(progress);

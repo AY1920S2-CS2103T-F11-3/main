@@ -11,6 +11,6 @@
   "favoriteFoodFilePath" : "foodiebot-favorites.json",
   "transactionsFilePath" : "foodiebot-transactions.json",
   "dateFirstLaunched" : {
-    "value" : "Optional.empty"
+    "value" : "2020-04-07"
   }
 }

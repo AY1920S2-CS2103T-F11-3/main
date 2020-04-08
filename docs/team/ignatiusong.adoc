@@ -9,89 +9,121 @@
 
 == Overview
 
-Our team were tasked with this software engineering project which we were to morph from the original Address Book Level 3 into FoodieBot.
-The user interacts with the application using a CLI, and it has a GUI created with JavaFX.
+Our team was tasked to make a new application by morphing from the existing AddressBook-3 application and building on it.
+We decided to make FoodieBot, which maintains the CLI style of AddressBook-3 while updating the GUI and adding additional functionality.
 
-FoodieBot is a campus locator desktop application created for students or tourists in NUS to provide canteen/ food information so they can make informed decisions in getting food on campus.
-
-
-Our application saves the user time by randomising food items based on their indicated preferences e.g by canteen/ location/ past preference
-and has a reporting feature as the user's selection of food items are tracked.
+FoodieBot is an application built for people around NUS in order to help them with various problems which may crop up from
+time to time while dining in NUS. It can help users decide by randomizing food options, get directions from Point A to Point
+as well as help the user plan their budget.
 
 
 
 == Summary of contributions
 
-* *Enhancement*: added *the ability to show a list of canteens*
-** What it does: display a list of canteens to the user
-** Justification: In the event that the user wants to find the canteens which are available, or to identify what canteens are near them and possibly the food that the canteen sells
-** Highlights: This command function lays the groundwork so that future commands can rely on information of the canteen, like food selection from the canteen stalls
+* *Enhancement*: added *the enter function*
+** What it does: it allows users to switch from viewing the list of canteens to viewing the list of stalls
+    and from the list of the stalls to view the menu of each individual stall.
+** Justification: Suppose that the user wants to find out more about the stalls in a canteen or more information about the food
+provided in the stall. The *enter* command conveniently encapsulates that idea of wanting to find out more about the thing you're interested
+in and not having to memorize so many commands to do it.
+** Highlights: While in the process of implementing *enter* I also created the idea of a *Context* for users to call
+commands which forms a very important part of our entire application allowing users simpler commands to remember.
 ** Credits: -
 
 
-* *Code contributed*: [https://github.com/AY1920S2-CS2103T-F11-3/main/commit/c0ebaa77975efb72307ddc6826d2a6cabb40f30b[Functional code]] [https://github.com/AY1920S2-CS2103T-F11-3/main/commit/c0ebaa77975efb72307ddc6826d2a6cabb40f30b[Test code]]
+* *Code contributed*: [https://github.com/AY1920S2-CS2103T-F11-3/main/commits?author=ignatiusong[Functional code]]
+[https://github.com/AY1920S2-CS2103T-F11-3/main/commit/de8636e50a4984ffa98ae6ff66e29344cc1b9efa[Test code]]
 
 * *Other contributions*:
 
-** Project management:
-*** Created tasks for milestone v1.1 - 1.3
 ** Enhancements to existing features:
-*** Updated file storage to read app data only when requested (Pull requests https://github.com/AY1920S2-CS2103T-F11-3/main/pull/63[#63])
+*** Updated UI with a label showing clearly what the UI is showing (Pull requests https://github.com/AY1920S2-CS2103T-F11-3/main/pull/202[#202])
+*** Added the *back* command to allow the user to return to the previous menu more easily (Pull request https://github.com/AY1920S2-CS2103T-F11-3/main/pull/199[#199])
 ** Documentation:
-*** Did the part on location in user guide: https://github.com/AY1920S2-CS2103T-F11-3/main/pull/44[#44]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-F11-3/main/pull/70[#70]
-*** Contributed to forum discussions (examples:  https://github.com/nus-cs2103-AY1920S2/forum/issues/37[1])
-
-*** Some parts of the canteen feature I added was adopted by several other class mates (https://github.com/AY1920S2-CS2103T-F11-3/main/pull/70[1], https://github.com/AY1920S2-CS2103T-F11-3/main/pull/74[2])
-** Tools:
-*** Integrated continuous integration service to the team repo
-
+*** In charge of maintaining the quality of English in the user guide.
+*** Made the user guide more friendly with more personal language
 
 == Contributions to the User Guide
 
 
 |===
-|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|_As you can see below, I have contributed in writing user-friendly directions which aids the user
+in using the app_
 |===
 
-=== List All Canteens: `list`
+=== View Stalls or Menu: `*enter*`
 
-Display a list of all available canteens on campus.
+Curious about the details of a particular canteen or stall? The `enter` command allows you to find out
+all the information you want about the canteen or stall you are interested in.
 
-Format: `list`
+Format: `enter STALL_NAME/ CANTEEN_NAME/ INDEX`
 
-* `[f/BLOCK_NAME]` - displays canteens ordered by increasing distance from current location.
+Parameters:
 
+* `INDEX`: An index that corresponds to a particular canteen. This index is located beside the canteen name.
+* `CANTEEN_NAME`: The canteen name has to be from one of the canteens displayed. Partial names are not allowed.
+* `STALL_NAME`:  The stall name has to be from one of the stalls displayed. Partial names are not allowed.
+
+NOTE: Information about the types of food sold at the stall, the rating of the stall and various other things will be implemented in v2.0. +
+The stall's rating is determined from the user's past experiences of the food items which were selected (find out
+more in Section 4.13: Rate Food Items).
+
+====
+Example:: You wish to see the stalls available in Nus Flavors.
+====
+. On the main screen, type `enter Nus Flavors` or `enter 1` into the command box.
++
+image::wireframe/enterStep1.PNG[width="700", align="left"]
+
+. This will display the list of stalls that Nus Flavors has.
+At the bottom of the screen, there will be a display box which displays the current canteen which you
+have entered.
++
+image::wireframe/enterStep2.PNG[width="700", align="left"]
+
+* If you wish to view stalls in another canteen you can enter `back` into the command box. This will bring you back to the main page.
+
+. If you wish to see the menu of a stall, you can key in `enter` again.
+Let us see what the Western stall has on their menu. You can key in `enter Western` or `enter 9`.
+Don't forget to hit the kbd:[enter] after you are done typing.
+
+. This will show you the menu of the Western stall.
+For each food item, the name, the cost and the description of the food item will be given.
+At the bottom of the screen, there will also be a display box showing the current stall which you have entered.
++
+image::wireframe/enterStall.PNG[width="700", align="left"]
+
+* Similarly, you can also enter `back` to return to the Nus Flavor canteen screen or enter `list` if you wish to return to the main screen.
+
+
+=== Filter Canteens, Stalls or Food: `*filter*`
+
+If you only want a canteen, stall or food with a particular tag, filter allows you to as its name suggests
+filter to show only the things you want. Filter also enables you to filter based on the maximum price you
+are willing to pay
+
+Format: `filter TAG/ PRICE`
+
+Parameters:
+
+* `TAG` - Label tag associated with the canteen or stall depending on which context you are in.
+* `PRICE` - a number which indicates the maximum price of food you are willing to pay for.
+
+
+NOTE: You can only filter by _price_ from the *menu page* of a stall. +
+When filtering by _tag_, tags vary based on the *current context*.
+
+****
 Examples:
+****
+* If you wish to filter tags based on what the canteen has, you can enter
+`*filter asian*` on the main screen. This will display canteens with the asian tag.
 
-* `list` +
-List all canteens.
-* `list f/com1` +
-List all canteens starting with the nearest canteen from com1
+* After entering a canteen, you can also filter the stalls based on tags as well.
 
-image::app/list.png[width="700", align="left"]
+* If you have decided on the stall you wish to eat from, but then have a limit on how much you can spend ($4).
+You can `filter 4` on the menu page. This will display all the options available that are within your budget.
 
-=== Go to Canteen: `goto`
-
-Display a map with the route between start location and destination.
-Includes the travel instructions and bus services that go to the canteen.
-
-Format: `goto CANTEEN_NAME f/ CURRENT_LOCATION`
-
-* `CANTEEN_NAME` and `CURRENT_LOCATION` field will be populated with suggestions as the user types.
-
-NOTE: `CANTEEN_NAME` and `CURRENT_LOCATION` field has to be one of the suggestions. Otherwise an error message will be displayed that requires the correct location to be provided.
-
-image::wireframe/goto.png[width="700", align="left"]
-
-=== View All Stores in Canteen: `enter`
-
-Display the stores available at the canteen based on user input.
-
-Format: `enter CANTEEN_NAME`
-
-* The display of the store rating is determined from the user past experience on the food items which were selected.
 
 
 == Contributions to the Developer Guide

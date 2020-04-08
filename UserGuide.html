@@ -31,12 +31,13 @@
 <li><a href="#view-budget-code-strong-budget-view-strong-code">4.9. View Budget: <code><strong>budget view</strong></code></a></li>
 <li><a href="#view-expense-report-code-strong-report-strong-code">4.10. View Expense Report: <code><strong>report</strong></code></a></li>
 <li><a href="#view-past-transactions-code-strong-transactions-strong-code">4.11. View Past Transactions: <code><strong>transactions</strong></code></a></li>
-<li><a href="#review-food-items-code-strong-review-strong-code">4.12. Review Food Items: <code><strong>review</strong></code></a></li>
-<li><a href="#rate-food-items-code-strong-rate-strong-code">4.13. Rate Food Items: <code><strong>rate</strong></code></a></li>
-<li><a href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.14. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></li>
-<li><a href="#view-favorited-food-items-code-strong-favorites-view-strong-code">4.15. View Favorited Food Items: <code><strong>favorites view</strong></code></a></li>
-<li><a href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></li>
-<li><a href="#filter-canteens-stalls-or-food-code-strong-filter-strong-code">4.17. Filter Canteens, Stalls or Food: <code><strong>filter</strong></code></a></li>
+<li><a href="#delete-a-transaction-code-strong-delete-strong-code">4.12. Delete A Transaction: <code><strong>delete</strong></code></a></li>
+<li><a href="#review-food-items-code-strong-review-strong-code">4.13. Review Food Items: <code><strong>review</strong></code></a></li>
+<li><a href="#rate-food-items-code-strong-rate-strong-code">4.14. Rate Food Items: <code><strong>rate</strong></code></a></li>
+<li><a href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.15. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></li>
+<li><a href="#view-favorited-food-items-code-strong-favorites-view-strong-code">4.16. View Favorited Food Items: <code><strong>favorites view</strong></code></a></li>
+<li><a href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.17. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></li>
+<li><a href="#filter-canteens-stalls-or-food-code-strong-filter-strong-code">4.18. Filter Canteens, Stalls or Food: <code><strong>filter</strong></code></a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
@@ -1043,7 +1044,79 @@ Y - year<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="review-food-items-code-strong-review-strong-code"><a class="link" href="#review-food-items-code-strong-review-strong-code">4.12. Review Food Items: <code><strong>review</strong></code></a></h3>
+<h3 id="delete-a-transaction-code-strong-delete-strong-code"><a class="link" href="#delete-a-transaction-code-strong-delete-strong-code">4.12. Delete A Transaction: <code><strong>delete</strong></code></a></h3>
+<div class="paragraph">
+<p>Accidentally added a wrong food to your purchases? The <code>delete</code> command allows you to do just that, by
+giving the index of the food to delete.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The index to delete has to be within the range of the list of transactions.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>delete</code> INDEX</p>
+</div>
+<div class="paragraph">
+<p>Parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> - The index of the item in the list of transactions.</p>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Example</dt>
+<dd>
+<p>You had accidentally selected the same food twice in a row too quickly, and want to delete one of them.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type in <code>transactions</code> from the main screen to enter the transactions page.</p>
+</li>
+<li>
+<p>Locate the index number of the food you wish to delete.</p>
+</li>
+<li>
+<p>Type in <code>delete</code> followed by the index number of the purchase, then hit <kbd>enter</kbd>.</p>
+</li>
+<li>
+<p>The additional purchase is now removed!</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Removing a food purchased only during a current budget cycle will add the amount back to your remaining budget!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="review-food-items-code-strong-review-strong-code"><a class="link" href="#review-food-items-code-strong-review-strong-code">4.13. Review Food Items: <code><strong>review</strong></code></a></h3>
 <div class="paragraph">
 <p>From the <strong>transactions</strong> screen, leave a food review for a food item you have consumed to help you jog
 your memory and recall your experiences, be it pleasant or unpleasant, of the previous time you had the food.</p>
@@ -1106,7 +1179,7 @@ You can update existing reviews by using the same command.
 </div>
 </div>
 <div class="sect2">
-<h3 id="rate-food-items-code-strong-rate-strong-code"><a class="link" href="#rate-food-items-code-strong-rate-strong-code">4.13. Rate Food Items: <code><strong>rate</strong></code></a></h3>
+<h3 id="rate-food-items-code-strong-rate-strong-code"><a class="link" href="#rate-food-items-code-strong-rate-strong-code">4.14. Rate Food Items: <code><strong>rate</strong></code></a></h3>
 <div class="paragraph">
 <p>Lazy to write a full food review? Well from the <code><strong>transactions</strong></code> screen, you can simply leave a food rating
 to show how well you thought of the food you had.</p>
@@ -1156,7 +1229,7 @@ You can also update existing ratings by using the rate on the same food item.
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-food-items-as-favorites-code-strong-favorites-set-strong-code"><a class="link" href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.14. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></h3>
+<h3 id="set-food-items-as-favorites-code-strong-favorites-set-strong-code"><a class="link" href="#set-food-items-as-favorites-code-strong-favorites-set-strong-code">4.15. Set Food Items as Favorites: <code><strong>favorites set</strong></code></a></h3>
 <div class="paragraph">
 <p>Just had this absolutely delicious meal and want to save it for the next time so you can remember to have it
 again or recommend it to others? From the <strong>menu screen</strong> of a stall, you can easily set your favourite food items
@@ -1177,7 +1250,7 @@ for easier access in the future.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="view-favorited-food-items-code-strong-favorites-view-strong-code"><a class="link" href="#view-favorited-food-items-code-strong-favorites-view-strong-code">4.15. View Favorited Food Items: <code><strong>favorites view</strong></code></a></h3>
+<h3 id="view-favorited-food-items-code-strong-favorites-view-strong-code"><a class="link" href="#view-favorited-food-items-code-strong-favorites-view-strong-code">4.16. View Favorited Food Items: <code><strong>favorites view</strong></code></a></h3>
 <div class="paragraph">
 <p>Once you have saved your favorite food items, you can easily access them with this command.</p>
 </div>
@@ -1191,7 +1264,7 @@ for easier access in the future.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-favorite-food-items-code-strong-favorites-remove-strong-code"><a class="link" href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.16. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></h3>
+<h3 id="remove-favorite-food-items-code-strong-favorites-remove-strong-code"><a class="link" href="#remove-favorite-food-items-code-strong-favorites-remove-strong-code">4.17. Remove Favorite Food Items: <code><strong>favorites remove</strong></code></a></h3>
 <div class="paragraph">
 <p>Had a change of heart and a particular food has lost your fancy? Don&#8217;t worry because FoodieBot makes it
 painless to sever your ties, by allowing quick removal of that food.</p>
@@ -1211,7 +1284,7 @@ painless to sever your ties, by allowing quick removal of that food.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="filter-canteens-stalls-or-food-code-strong-filter-strong-code"><a class="link" href="#filter-canteens-stalls-or-food-code-strong-filter-strong-code">4.17. Filter Canteens, Stalls or Food: <code><strong>filter</strong></code></a></h3>
+<h3 id="filter-canteens-stalls-or-food-code-strong-filter-strong-code"><a class="link" href="#filter-canteens-stalls-or-food-code-strong-filter-strong-code">4.18. Filter Canteens, Stalls or Food: <code><strong>filter</strong></code></a></h3>
 <div class="paragraph">
 <p>If you only want a canteen, stall or food with a particular tag, filter allows you to as its name suggests
 filter to show only the things you want. Filter also enables you to filter based on the maximum price you
@@ -1374,4 +1447,4 @@ You can <code>filter 4</code> on the menu page. This will display all the option
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-07 06:38:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-08 05:28:22 UTC</div></div></div></body></html>

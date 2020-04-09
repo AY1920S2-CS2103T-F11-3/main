@@ -31,7 +31,7 @@
 </li>
 <li><a href="#implementation">5. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#proposed-list-feature">5.1. [Proposed] List feature</a></li>
+<li><a href="#list-command">5.1. List Command</a></li>
 <li><a href="#budget-command">5.2. Budget Command</a></li>
 <li><a href="#enter-command">5.3. Enter Command</a></li>
 <li><a href="#favorites-command">5.4. Favorites Command</a></li>
@@ -69,7 +69,7 @@
 <p>FoodieBot is a campus food application which can help users look for food they want, by recommending the canteens nearest to them,
 providing randomized food suggestions, helping users plan their budget and provide info on food around
 NUS.
-FoodieBot is the one stop application to solve all meal decision problems on NUS.</p>
+FoodieBot is the one stop application to solve all meal decision problems in NUS.</p>
 </div>
 </div>
 <div class="sect2">
@@ -120,7 +120,7 @@ The project is available at <a href="https://github.com/AY1920S2-CS2103T-F11-3/m
 <dl>
 <dt class="hdlist1"><span class="BLUE">Context</span></dt>
 <dd>
-<p>Refers to which state the application is in. Use interchangeably with user interface.</p>
+<p>Refers to which state the application is in. This term is used interchangeably with user interface.</p>
 </dd>
 </dl>
 </div>
@@ -154,7 +154,7 @@ Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how 
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S2-CS2103T-F11-3/main/tree/master/src/main/java/seedu/foodiebot/Main.java"><code>Main</code></a> and <a href="https://github.com/AY1920S2-CS2103T-F11-3/main/tree/master/src/main/java/seedu/foodiebot/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has two classes called <a href="https://github.com/AY1920S2-CS2103T-F11-3/main/tree/master/src/main/java/seedu/foodiebot/Main.java">Main</a> and <a href="https://github.com/AY1920S2-CS2103T-F11-3/main/tree/master/src/main/java/seedu/foodiebot/MainApp.java">MainApp</a>. It is responsible for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -167,7 +167,7 @@ Refer to the <a href="UsingPlantUml.html">Using PlantUML guide</a> to learn how 
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components.
+<p><a href="#Design-Commons"><strong>Commons</strong></a> represents a collection of classes used by multiple other components.
 The following class plays an important role at the architecture level:</p>
 </div>
 <div class="ulist">
@@ -183,16 +183,16 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI of the App.</p>
+<p><a href="#Design-Ui"><strong>UI</strong></a>: The UI of the App.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
+<p><a href="#Design-Logic"><strong>Logic</strong></a>: The command executor.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
+<p><a href="#Design-Model"><strong>Model</strong></a>: Holds the data of the App in-memory.</p>
 </li>
 <li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
+<p><a href="#Design-Storage"><strong>Storage</strong></a>: Reads data from, and writes data to, the hard disk.</p>
 </li>
 </ul>
 </div>
@@ -202,7 +202,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+<p>Defines its <em>API</em> in an <em><strong>interface</strong></em> with the same name as the Component.</p>
 </li>
 <li>
 <p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
@@ -210,7 +210,7 @@ The following class plays an important role at the architecture level:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic</code> interface and exposes its functionality using the <code>LogicManager</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -222,9 +222,9 @@ The following class plays an important role at the architecture level:</p>
 <div class="paragraph">
 <p>The <em>Sequence Diagram</em> below shows how the components interact with each other for the scenario where the user issues the command <code>favorites set 1</code>.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram">
+<img src="images/ArchitectureSequenceDiagram.png" alt="ArchitectureSequenceDiagram" width="600">
 </div>
 <div class="title">Figure 3. Component interactions for <code>favorites set 1</code> command</div>
 </div>
@@ -234,9 +234,9 @@ The following class plays an important role at the architecture level:</p>
 </div>
 <div class="sect2">
 <h3 id="Design-Ui"><a class="link" href="#Design-Ui">4.2. UI component</a></h3>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/UiClassDiagram.png" alt="UiClassDiagram">
+<img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
 <div class="title">Figure 4. Structure of the UI Component</div>
 </div>
@@ -284,7 +284,7 @@ The following class plays an important role at the architecture level:</p>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a canteen).</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -432,13 +432,23 @@ different commands.</p>
 <h2 id="implementation"><a class="link" href="#implementation">5. Implementation</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="proposed-list-feature"><a class="link" href="#proposed-list-feature">5.1. [Proposed] List feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">5.1.1. Proposed Implementation</a></h4>
+<h3 id="list-command"><a class="link" href="#list-command">5.1. List Command</a></h3>
 <div class="paragraph">
 <p>The list command is facilitated by <code>ListCommandParser</code>.
-It extends <code>FoodieBotParser</code> to handle list canteen commands.
-It implements the following operations:</p>
+It extends <code>FoodieBotParser</code> to handle list canteen commands.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a list command:</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/ListActivityDiagram.png" alt="ListActivityDiagram" width="400">
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-command-implementation"><a class="link" href="#list-command-implementation">5.1.1. List Command Implementation</a></h4>
+<div class="paragraph">
+<p>It implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -476,14 +486,6 @@ For example, if ListCommand has the nearest block name passed through as a param
 <div class="imageblock">
 <div class="content">
 <img src="images/ListSequenceDiagram.png" alt="ListSequenceDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a list command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/ListActivityDiagram.png" alt="ListActivityDiagram">
 </div>
 </div>
 </div>
@@ -536,9 +538,9 @@ Find has to be followed by nearest otherwise it does not come natural to sort by
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrate the different scenario for the budget command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/BudgetActivityDiagram.png" alt="BudgetActivityDiagram">
+<img src="images/BudgetActivityDiagram.png" alt="BudgetActivityDiagram" width="500">
 </div>
 </div>
 <div class="sect3">
@@ -549,17 +551,17 @@ Find has to be followed by nearest otherwise it does not come natural to sort by
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>BudgetCommandParse</code> object.</p>
 </li>
 <li>
-<p><code>BudgetCommandParse</code> then parse the budget command to determine if the action of the budget is <code>set</code>, <code>view</code> or invalid.<br>
+<p><code>BudgetCommandParse</code> then parses the budget command to determine if the action of the budget is <code>set</code>, <code>view</code> or invalid.<br>
 This process returns a new <code>BudgetCommand</code> object.</p>
 </li>
 <li>
-<p>The <code>LogicManager</code> then access then <code>BudgetCommand#execute()</code> to determine the type of execution.</p>
+<p>The <code>LogicManager</code> then access <code>BudgetCommand#execute()</code> to determine the type of execution.</p>
 </li>
 <li>
 <p>If the action is <code>set</code> then the <code>budget</code> object saves the user input accordingly.</p>
 </li>
 <li>
-<p>If the action is <code>view</code> then the budge is retrieve from the storage.</p>
+<p>If the action is <code>view</code> then the budget is retrieved from the storage.</p>
 </li>
 <li>
 <p>The <code>BudgetCommand#execute()</code> returns a <code>CommandResult</code> object to the <code>LogicManger</code>.</p>
@@ -619,7 +621,7 @@ budget to rate a food item.</p>
 <p>The <code>enter</code> command is implemented by either the <code>EnterCanteenCommand</code> class or the <code>EnterStallCommand</code> class.</p>
 </div>
 <div class="paragraph">
-<p>These commands are accessed by the <code>LogicManager#execute()</code> to switch the user interface accordingly base on where the user is at.</p>
+<p>These commands are accessed by the <code>LogicManager#execute()</code> to switch the user interface accordingly based on where the user is at.</p>
 </div>
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates the different scenario for the enter command:</p>
@@ -629,14 +631,14 @@ budget to rate a food item.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> which parses the user input into a <code>ParserContext</code> to determine if the user is currently on the main context.</p>
+<p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> which parses the user input into a <code>ParserContext</code> to determine if the user is currently in the main context.</p>
 </li>
 <li>
 <p>If the user has input <code>enter</code> on the main context, it creates a <code>EnterCanteenCommandParser</code> object that parses in the user input to determine which canteen to enter.</p>
 </li>
 <li>
 <p>Otherwise if the user has Input <code>enter</code> on the stall context, it creates a <code>EnterStallCommandParser</code> object that parses in the user input to determine which stall to enter
-This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <code>EnterStallCommand</code> object accordingly to the <code>LogicManager</code>.</p>
+This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <code>EnterStallCommand</code> object to the <code>LogicManager</code> accordingly.</p>
 </li>
 <li>
 <p>The <code>LogicManager</code> then access <code>EnterCanteenCommand#execute()</code> <strong>/</strong> <code>EnterStallCommand#execute()</code> to switch the current display to the stalls/food available within the selected canteen/stall.</p>
@@ -649,9 +651,9 @@ This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <
 <div class="paragraph">
 <p>Below is the <em>activity diagram</em> that summarizes what happens during the execution of the <code>enter</code> command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/EnterActivityDiagram.png" alt="EnterActivityDiagram">
+<img src="images/EnterActivityDiagram.png" alt="EnterActivityDiagram" width="750">
 </div>
 </div>
 </div>
@@ -682,7 +684,7 @@ This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <
 <p>Pros: one command to select canteens, stalls and food items.</p>
 </li>
 <li>
-<p>Cons: Additional checks for <code>select</code> command to detect if a food is chosen, so that it gets add into transactions.</p>
+<p>Cons: Additional checks for <code>select</code> command to detect if a food is chosen, so that it gets added into transactions.</p>
 </li>
 </ul>
 </div>
@@ -703,6 +705,11 @@ This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>favorite</code> command:</p>
 </div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/FavoritesSetActivityDiagram.png" alt="FavoritesSetActivityDiagram" width="250">
+</div>
+</div>
 <div class="sect3">
 <h4 id="favorites-command-implementation"><a class="link" href="#favorites-command-implementation">5.4.1. Favorites Command Implementation</a></h4>
 <div class="olist arabic">
@@ -711,7 +718,7 @@ This process returns a new <code>EnterCanteenCommand</code> <strong>/</strong> <
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>FavoritesCommandParser</code> object.</p>
 </li>
 <li>
-<p><code>FavoritesCommandParser</code> then parse the user input to determine if the favorite command is <code>set</code>, <code>remove</code>, or <code>view</code>.
+<p><code>FavoritesCommandParser</code> then parses the user input to determine if the favorite command is <code>set</code>, <code>remove</code>, or <code>view</code>.
 This process returns a new <code>FavoritesCommand</code> object.</p>
 </li>
 <li>
@@ -724,7 +731,7 @@ This process returns a new <code>FavoritesCommand</code> object.</p>
 <p>If <code>view</code> was chosen, a list of favorite food items are displayed.</p>
 </li>
 <li>
-<p>If <code>remove</code> was chosen, the respective food item is remove from the favorite food item list.</p>
+<p>If <code>remove</code> was chosen, the respective food item is removed from the favorite food item list.</p>
 </li>
 <li>
 <p><code>FavoritesCommand#execute()</code> creates a new <code>ActionCommandResult</code> that extends the <code>CommandResult</code> which is to be returned
@@ -734,6 +741,11 @@ to the <code>LogicManager</code>.</p>
 </div>
 <div class="paragraph">
 <p>Below is the <em>sequence diagram</em> that summarizes what happens during the execution of the <code>favorites</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FavoritesSequenceDiagram.png" alt="FavoritesSequenceDiagram">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -750,7 +762,7 @@ to the <code>LogicManager</code>.</p>
 <p>Pros: Only need to maintain one list of food items.</p>
 </li>
 <li>
-<p>Cons: Does not allow stall to be added to favorites, the randomize feature cannot take into account of users' stall preferences.</p>
+<p>Cons: Does not allow stalls to be added to favorites, the randomize feature cannot take into account users' stall preferences.</p>
 </li>
 </ul>
 </div>
@@ -780,10 +792,15 @@ food and the stall sells a food item with that food characteristic.</p>
 <p>The <code>filter</code> command is implemented by the <code>FilterCommand</code> class.</p>
 </div>
 <div class="paragraph">
-<p>This command is accessed by the <code>LogicManager#execute()</code> to filter outputs according to th euser input.</p>
+<p>This command is accessed by the <code>LogicManager#execute()</code> to filter outputs according to the user input.</p>
 </div>
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>filter</code> command:</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/FilterActivityDiagram.png" alt="FilterActivityDiagram" width="350">
+</div>
 </div>
 <div class="sect3">
 <h4 id="filter-command-implementation"><a class="link" href="#filter-command-implementation">5.5.1. Filter Command Implementation</a></h4>
@@ -803,7 +820,7 @@ This process returns a new <code>FilterCommand</code> object.</p>
 <p>If the filter option is based on a price, the current context has to be the stall, otherwise an error message is thrown.</p>
 </li>
 <li>
-<p>If the option is based on a tag, the filter option will return a list of option base on the current context.</p>
+<p>If the option is based on a tag, the filter option will return a list of options based on the current context.</p>
 </li>
 <li>
 <p><code>FilterCommand#execute()</code> returns a <code>CommandResult</code> to the <code>LogicManager</code>.</p>
@@ -813,6 +830,11 @@ This process returns a new <code>FilterCommand</code> object.</p>
 <div class="paragraph">
 <p>Below is the <em>sequence diagram</em> that summarizes what happens during the execution of the <code>filter</code> command:</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FilterSequenceDiagram.png" alt="FilterSequenceDiagram">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="filter-design-considerations"><a class="link" href="#filter-design-considerations">5.5.2. Filter Design Considerations</a></h4>
@@ -821,7 +843,7 @@ This process returns a new <code>FilterCommand</code> object.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> <code>filter</code> is using strict match case.</p>
+<p><strong>Alternative 1 (current choice):</strong> <code>filter</code> is using the strict match case.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -835,7 +857,7 @@ return both food that are expensive and or considered as extras in a combo set</
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> <code>filter</code> allow partial name tag search.</p>
+<p><strong>Alternative 2:</strong> <code>filter</code> allows partial name tag search.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -858,10 +880,15 @@ return both food that are expensive and or considered as extras in a combo set</
 <p>The <code>goto</code> command is implemented by the <code>GoToCanteenCommand</code> class.</p>
 </div>
 <div class="paragraph">
-<p>This command is accessed by the <code>LogicManager#execute()</code> to display the direction to a canteen base on the user input.</p>
+<p>This command is accessed by the <code>LogicManager#execute()</code> to display the direction to a canteen based on the user input.</p>
 </div>
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>goto</code> command:</p>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="images/GotoActivityDiagram.png" alt="GotoActivityDiagram" width="350">
+</div>
 </div>
 <div class="sect3">
 <h4 id="goto-command-implementation"><a class="link" href="#goto-command-implementation">5.6.1. Goto Command Implementation</a></h4>
@@ -871,7 +898,7 @@ return both food that are expensive and or considered as extras in a combo set</
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>GoToCanteenCommandParser</code> object.</p>
 </li>
 <li>
-<p><code>GoToCanteenCommandParser</code> then parse the goto command to determine the canteen name and the current location.<br>
+<p><code>GoToCanteenCommandParser</code> then parses the goto command to determine the canteen name and the current location.<br>
 This process returns a new <code>GoToCanteenCommand</code> object.</p>
 </li>
 <li>
@@ -885,6 +912,11 @@ to the <code>LogicManager</code>.</p>
 </div>
 <div class="paragraph">
 <p>Below is the <em>sequence diagram</em> that summarizes what happens during the execution of the <code>goto</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GotoSequenceDiagram.png" alt="GotoSequenceDiagram">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -955,9 +987,9 @@ One has to scroll down the list to find the correct list item to show the direct
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates the different scenario for the randomize command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/RandomizeActivityDiagram.png" alt="RandomizeActivityDiagram">
+<img src="images/RandomizeActivityDiagram.png" alt="RandomizeActivityDiagram" width="500">
 </div>
 </div>
 <div class="sect3">
@@ -968,7 +1000,7 @@ One has to scroll down the list to find the correct list item to show the direct
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>RandomizeCommandParser</code> object.</p>
 </li>
 <li>
-<p><code>RandomizeCommandParser</code> then parse the randomize command to separate the prefix if any and return a command object.
+<p><code>RandomizeCommandParser</code> then parses the randomize command to separate the prefix if any and return a command object.
 In this case a <code>RandomizeCommand</code> object is created and returned to the <code>LogicManager</code>.</p>
 </li>
 <li>
@@ -1002,10 +1034,10 @@ In this case a <code>RandomizeCommand</code> object is created and returned to t
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Only allow canteen index or name shown in the displayed list to be entered with the prefix.</p>
+<p>Pros: Only allow the canteen index or name shown in the displayed list to be entered with the prefix.</p>
 </li>
 <li>
-<p>Cons: Prefix is necessary to indicate that randomize works with one canteen only.</p>
+<p>Cons: Prefix is necessary to indicate that <code>randomize</code> works with one canteen only.</p>
 </li>
 </ul>
 </div>
@@ -1039,9 +1071,9 @@ In this case a <code>RandomizeCommand</code> object is created and returned to t
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>rate</code> command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/RateActivityDiagram.png" alt="RateActivityDiagram">
+<img src="images/RateActivityDiagram.png" alt="RateActivityDiagram" width="250">
 </div>
 </div>
 <div class="sect3">
@@ -1054,7 +1086,7 @@ In this case a <code>RandomizeCommand</code> object is created and returned to t
 <li>
 <p><code>RateCommandParser</code> then parse in the user input to ensure that the <code>rate</code> command is only use in the transaction context
 and that the inputs are valid.<br>
-This process creates and return a <code>RateCommand</code> object to the <code>LogicManager</code>.</p>
+This process creates and returns a <code>RateCommand</code> object to the <code>LogicManager</code>.</p>
 </li>
 <li>
 <p>The <code>LogicManager</code> then access the <code>RateCommand#execute()</code> to retrieve the food item from the transaction storage and
@@ -1109,9 +1141,9 @@ update the rating of the food.</p>
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>review</code> command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/ReviewActivityDiagram.png" alt="ReviewActivityDiagram">
+<img src="images/ReviewActivityDiagram.png" alt="ReviewActivityDiagram" width="250">
 </div>
 </div>
 <div class="sect3">
@@ -1124,7 +1156,7 @@ update the rating of the food.</p>
 <li>
 <p><code>ReviewCommandParser</code> then parse in the user input to ensure that the <code>review</code> command is only use in the transaction context
 and that the inputs are valid.<br>
-This process creates and return a <code>ReviewCommand</code> object to the <code>LogicManager</code>.</p>
+This process creates and returns a <code>ReviewCommand</code> object to the <code>LogicManager</code>.</p>
 </li>
 <li>
 <p>The <code>LogicManager</code> then access the <code>ReviewCommand#execute()</code> to retrieve the food item from the transaction storage and
@@ -1164,7 +1196,7 @@ update the review of the food.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> <code>review INDEX</code>. FoodieBot shows review edit screen to type message.</p>
+<p><strong>Alternative 2:</strong> <code>review INDEX</code>. FoodieBot shows the review edit screen to type a review message.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1193,9 +1225,9 @@ If the back command is accepted, the user can&#8217;t enter the single word <cod
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>report</code> command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/ReportActivityDiagram.png" alt="ReportActivityDiagram">
+<img src="images/ReportActivityDiagram.png" alt="ReportActivityDiagram" width="350">
 </div>
 </div>
 <div class="sect3">
@@ -1206,14 +1238,14 @@ If the back command is accepted, the user can&#8217;t enter the single word <cod
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>ReportCommandParser</code> object.</p>
 </li>
 <li>
-<p><code>ReportCommandParser</code> then parse an optional user input to determine the period of report to display.<br>
+<p><code>ReportCommandParser</code> then parses an optional user input to determine the period of report to display.<br>
 This Process returns a <code>ReportCommand</code> object to the <code>LogicManager</code>.</p>
 </li>
 <li>
 <p>The <code>LogicManager</code> then access <code>ReportCommand#execute()</code>.</p>
 </li>
 <li>
-<p>The <code>ReportCommand#execute()</code> retrieves the transaction list from storage and display a list adapted to a report format within the given period, or all transactions if the period is not given.</p>
+<p>The <code>ReportCommand#execute()</code> retrieves the transaction list from storage and displays a list adapted to a report format within the given period, or all transactions if the period is not given.</p>
 </li>
 <li>
 <p>The <code>ReportCommand#execute()</code> returns a  <code>CommandResult</code> object to the <code>LogicManger</code>.</p>
@@ -1286,7 +1318,7 @@ one less command to manage.</p>
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>SelectItemCommandParser</code> object.</p>
 </li>
 <li>
-<p><code>SelectItemCommandParser</code> then parse the select command to ensure that the select command is called only on the stall context.
+<p><code>SelectItemCommandParser</code> then parses the select command to ensure that the select command is called only on the stall context.
 This process also checks if the user input is the food index or the food name that is available in that stall.
 Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</code>.</p>
 </li>
@@ -1294,7 +1326,7 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <p>The <code>LogicManager</code> then access <code>SelectItemCommand#execute()</code>.</p>
 </li>
 <li>
-<p>The <code>SelectItemCommand#execute()</code> retrieve the selected <code>Food</code> and creates a <code>PurchasedFood</code> object with additional variables.</p>
+<p>The <code>SelectItemCommand#execute()</code> retrieves the selected <code>Food</code> and creates a <code>PurchasedFood</code> object with additional variables.</p>
 </li>
 <li>
 <p>The <code>SelectItemCommand#execute()</code> adds the <code>PurchasedFood</code> to the existing transactions list for storage.</p>
@@ -1343,9 +1375,9 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <div class="paragraph">
 <p>The following <em>activity diagram</em> illustrates what happens when a user executes the <code>transactions</code> command:</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: left">
 <div class="content">
-<img src="images/TransactionsActivityDiagram.png" alt="TransactionsActivityDiagram">
+<img src="images/TransactionsActivityDiagram.png" alt="TransactionsActivityDiagram" width="350">
 </div>
 </div>
 <div class="sect3">
@@ -1356,7 +1388,7 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <p>The <code>LogicManager</code> first executes <code>FoodieBotParser</code> to create a <code>TransactionsCommandParser</code> object.</p>
 </li>
 <li>
-<p><code>TransactionsCommandParser</code> then parse an optional user input to determine the period of transaction report to display.<br>
+<p><code>TransactionsCommandParser</code> then parses an optional user input to determine the period of transaction report to display.<br>
 This Process returns a <code>TransactionsCommand</code> object to the <code>LogicManager</code>.</p>
 </li>
 <li>
@@ -1403,7 +1435,7 @@ This Process returns a <code>TransactionsCommand</code> object to the <code>Logi
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Convenience in being able interact with the screen using multiple commands.</p>
+<p>Pros: Convenience in being able to interact with the screen using multiple commands.</p>
 </li>
 <li>
 <p>Cons: Ui may look cluttered. Increases difficulty to test.</p>
@@ -1632,7 +1664,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>v2.0</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">send invitation to a friend.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">send an invitation to a friend.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">have meals together with friends.</p></td>
 </tr>
 </tbody>
@@ -1676,7 +1708,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. User request to remove suggestion.</p>
+<p>1a1. User requests to remove the suggestion.</p>
 </li>
 <li>
 <p>1a2. FoodieBot updates the food item not to be suggested in the future</p>
@@ -1702,7 +1734,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 <p>FoodieBot shows the current budget with list of expenses</p>
 </li>
 <li>
-<p>User request to set budget</p>
+<p>User requests to set budget</p>
 </li>
 <li>
 <p>FoodieBot updates the budget for the specified period</p>
@@ -1762,7 +1794,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 <p>FoodieBot shows a list of transactions</p>
 </li>
 <li>
-<p>User request to review the food item in the list</p>
+<p>User requests to review the food item in the list</p>
 </li>
 <li>
 <p>FoodieBot shows the edit screen for user to update</p>
@@ -1828,7 +1860,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 <p>FoodieBot shows a list of transactions</p>
 </li>
 <li>
-<p>User request to rate the food item in the list</p>
+<p>User requests to rate the food item in the list</p>
 </li>
 <li>
 <p>FoodieBot updates the review for the food item on the list</p>
@@ -1929,7 +1961,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 <dl>
 <dt class="hdlist1">Activity Diagram</dt>
 <dd>
-<p>Use to a model workflow.</p>
+<p>Use to model workflow.</p>
 </dd>
 <dt class="hdlist1">API</dt>
 <dd>
@@ -1953,7 +1985,7 @@ The user is not particularly limited to student and staff, it can be anyone who 
 </dd>
 <dt class="hdlist1">PlantUML</dt>
 <dd>
-<p>Component used to write diagrams.</p>
+<p>Diagramming Tool that is used to create UML diagrams.</p>
 </dd>
 <dt class="hdlist1">Sequence Diagram</dt>
 <dd>
@@ -2000,4 +2032,4 @@ The user is not particularly limited to student and staff, it can be anyone who 
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 06:32:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 08:31:25 UTC</div></div></div></body></html>

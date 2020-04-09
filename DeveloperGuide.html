@@ -1336,13 +1336,16 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <p>The <code>LogicManager</code> then access <code>SelectItemCommand#execute()</code>.</p>
 </li>
 <li>
+<p>The <code>SelectItemCommand#execute()</code> retrieves the <code>Budget</code> from <code>ModelManager</code>.</p>
+</li>
+<li>
 <p>The <code>SelectItemCommand#execute()</code> retrieves the selected <code>Food</code> and creates a <code>PurchasedFood</code> object with additional variables.</p>
 </li>
 <li>
 <p>The <code>SelectItemCommand#execute()</code> adds the <code>PurchasedFood</code> to the existing transactions list for storage.</p>
 </li>
 <li>
-<p>The <code>SelectItemCommand#execute()</code> loads and updates the <code>Budget</code> from the <code>ModelManager</code>.</p>
+<p>The <code>SelectItemCommand#execute()</code> updates the <code>Budget</code> and saves to the <code>ModelManager</code>.</p>
 </li>
 <li>
 <p>The <code>SelectItemCommand#execute()</code> returns a  <code>CommandResult</code> object to the <code>LogicManger</code>.</p>
@@ -2050,4 +2053,4 @@ The user is not particularly limited to student and staff, it can be anyone who 
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 16:31:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 17:46:21 UTC</div></div></div></body></html>

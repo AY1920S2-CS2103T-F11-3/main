@@ -853,7 +853,7 @@ This process returns a new <code>FilterCommand</code> object.</p>
 <ul>
 <li>
 <p>Pros: Can be accurate in the filter, for example, typing <code>filter ex</code> with not
-return both food that are expensive and or considered as extras in a combo set</p>
+return both food that are expensive and or considered as extras in a combo set.</p>
 </li>
 <li>
 <p>Cons: -</p>
@@ -866,10 +866,10 @@ return both food that are expensive and or considered as extras in a combo set</
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More lenient in tag search</p>
+<p>Pros: More lenient in tag search.</p>
 </li>
 <li>
-<p>Cons: Long list of filter results</p>
+<p>Cons: Long list of filter results.</p>
 </li>
 </ul>
 </div>
@@ -1192,10 +1192,10 @@ update the review of the food.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Able to update a review message conveniently</p>
+<p>Pros: Able to update a review message conveniently.</p>
 </li>
 <li>
-<p>Cons: Review message may be too long which may not fit within the ui card</p>
+<p>Cons: Review message may be too long which may not fit within the ui card.</p>
 </li>
 </ul>
 </div>
@@ -1205,7 +1205,7 @@ update the review of the food.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Remove the need to do any checking on prefixes</p>
+<p>Pros: Remove the need to do any checking on prefixes.</p>
 </li>
 <li>
 <p>Cons: A valid command can be entered but not recognised. The user has to accept the change to navigate away.
@@ -1368,14 +1368,27 @@ Returning a <code>SelectItemCommand</code> object to the <code>LogicManager</cod
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Current Choice:</strong> Selects the food item with <code>select INDEX</code></p>
+<p><strong>Alternative 1 (current choice):</strong> Select food items with <code>select INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: clean, easy to understand command syntax</p>
+<p>Pros: Clean, easy to understand command syntax.</p>
 </li>
 <li>
-<p>Cons: may be confused and used interchangeably with <code>enter</code></p>
+<p>Cons: More coding required as have to create a separate command class for the select command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use <code>enter INDEX</code> command to select food</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Less coding required, can tag on use of already implemented <code>enter</code> command for canteens and stalls.</p>
+</li>
+<li>
+<p>Cons: Awkward syntax to <em>enter</em> food instead of _select_food.</p>
 </li>
 </ul>
 </div>
@@ -2053,4 +2066,4 @@ The user is not particularly limited to student and staff, it can be anyone who 
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 03:27:37 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 03:33:51 UTC</div></div></div></body></html>
